@@ -1,7 +1,5 @@
 package lulzco.todoboard.user;
 
-import lulzco.todoboard.user.utils.EncryptionUtil;
-import lulzco.todoboard.user.utils.SignupValidator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,14 +10,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 class UserServiceTest {
 
     private final UserService userService;
-    private final EncryptionUtil encryptionUtil;
-    private final SignupValidator signupValidator;
 
     @Autowired
-    UserServiceTest(UserService userService, EncryptionUtil encryptionUtil, SignupValidator signupValidator) {
+    UserServiceTest(UserService userService) {
         this.userService = userService;
-        this.encryptionUtil = encryptionUtil;
-        this.signupValidator = signupValidator;
     }
 
 
@@ -29,15 +23,11 @@ class UserServiceTest {
         String name = "홍길동";
         String userId = "ghdrlfehd1234";
         String password = "rlfehddl1234";
-        User user = null;
 
-        Boolean signupValidation = signupValidator.validate(userId, password);
-        if (signupValidation) {
-            user = new User();
-            user.setName(name);
-            user.setUserId(userId);
-            user.setPassword(encryptionUtil.encrypt(password));
-        }
+        User user = new User();
+        user.setName(name);
+        user.setUserId(userId);
+        user.setPassword(password);
 
         userService.create(user);
 
@@ -47,5 +37,4 @@ class UserServiceTest {
         Assertions.assertThat(createdUser.getUserId()).isEqualTo(userId);
         Assertions.assertThat(createdUser.getPassword()).isEqualTo(password);
     }
-
 }
