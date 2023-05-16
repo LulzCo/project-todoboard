@@ -14,7 +14,15 @@ class AuthServiceTest {
     }
 
     @Test
-    void login() {
-        
+    void signin() {
+        String userId = "ghdrlfehd1234";
+        String password = "rlfehddl1234";
+
+        SigninDto signinDto = new SigninDto();
+        signinDto.setUserId(userId);
+        signinDto.setPassword(password);
+
+        authService.signin(signinDto);
+
     }
 }
