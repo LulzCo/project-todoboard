@@ -1,6 +1,8 @@
 package lulzco.todoboard.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +20,8 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public void signup(@RequestBody User user) {
+    public ResponseEntity<String> signup(@RequestBody User user) {
         userService.create(user);
+        return ResponseEntity.status(HttpStatus.OK).body("회원가입이 완료되었습니다");
     }
 }
