@@ -22,6 +22,7 @@ class IssueServiceTest {
     @DisplayName("생성 후 조회 테스트")
     @Test
     void create() {
+        String userId = "test user";
         String title = "test title";
         String tag = "test tag";
         String contents = "test contents";
@@ -31,6 +32,7 @@ class IssueServiceTest {
         LocalDateTime dueDate = LocalDateTime.of(2024, 12, 25, 23, 59);
 
         Issue issue = new Issue();
+        issue.setUserId(userId);
         issue.setTitle(title);
         issue.setTag(tag);
         issue.setContents(contents);

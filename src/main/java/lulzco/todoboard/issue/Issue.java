@@ -14,6 +14,9 @@ public class Issue {
     private Long id;
 
     @Column
+    private String userId;
+
+    @Column
     private String title;
 
     @Column
@@ -33,4 +36,5 @@ public class Issue {
 
     @Column
     private LocalDateTime dueDate;
+
 }
