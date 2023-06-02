@@ -3,6 +3,7 @@ package lulzco.todoboard.issue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -38,5 +39,10 @@ public class IssueServiceImpl implements IssueService {
     @Override
     public void delete(Long id) {
         issueRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Issue> getIssueByUserId(String userId) {
+        return issueRepository.findByUserId(userId);
     }
 }
