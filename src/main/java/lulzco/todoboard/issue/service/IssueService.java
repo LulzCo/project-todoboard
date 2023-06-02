@@ -1,4 +1,6 @@
-package lulzco.todoboard.issue;
+package lulzco.todoboard.issue.service;
+
+import lulzco.todoboard.issue.data.entity.Issue;
 
 import java.util.List;
 

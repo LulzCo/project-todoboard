@@ -1,5 +1,9 @@
 package lulzco.todoboard.issue;
 
+import lulzco.todoboard.issue.data.DueType;
+import lulzco.todoboard.issue.data.IssueStatus;
+import lulzco.todoboard.issue.data.entity.Issue;
+import lulzco.todoboard.issue.service.IssueService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,6 +89,7 @@ class IssueServiceTest {
         String userId = "test user";
         String title = "test title";
         String tag = "test tag";
+        IssueStatus status = IssueStatus.TODO;
         String contents = "test contents";
         LocalDateTime createdAt = LocalDateTime.now();
         LocalDateTime updatedAt = LocalDateTime.now();
@@ -95,6 +100,7 @@ class IssueServiceTest {
         issue.setUserId(userId);
         issue.setTitle(title);
         issue.setTag(tag);
+        issue.setStatus(status);
         issue.setContents(contents);
         issue.setCreatedAt(createdAt);
         issue.setUpdatedAt(updatedAt);

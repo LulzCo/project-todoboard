@@ -1,4 +1,4 @@
-package lulzco.todoboard.issue;
+package lulzco.todoboard.issue.data;
 
 public enum DueType {
     DEADLINE, SCHECDULE

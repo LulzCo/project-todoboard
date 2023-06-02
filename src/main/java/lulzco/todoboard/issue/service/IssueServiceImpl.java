@@ -1,5 +1,7 @@
-package lulzco.todoboard.issue;
+package lulzco.todoboard.issue.service;
 
+import lulzco.todoboard.issue.data.entity.Issue;
+import lulzco.todoboard.issue.repository.IssueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

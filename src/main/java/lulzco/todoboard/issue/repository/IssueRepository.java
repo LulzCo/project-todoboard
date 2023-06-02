@@ -1,5 +1,6 @@
-package lulzco.todoboard.issue;
+package lulzco.todoboard.issue.repository;
 
+import lulzco.todoboard.issue.data.entity.Issue;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

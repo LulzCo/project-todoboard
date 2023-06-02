@@ -1,7 +1,10 @@
-package lulzco.todoboard.issue;
+package lulzco.todoboard.issue.data.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NonNull;
+import lulzco.todoboard.issue.data.DueType;
+import lulzco.todoboard.issue.data.IssueStatus;
 
 import java.time.LocalDateTime;
 
@@ -14,6 +17,7 @@ public class Issue {
     private Long id;
 
     @Column
+    @NonNull
     private String userId;
 
     @Column
@@ -23,18 +27,28 @@ public class Issue {
     private String tag;
 
     @Column
+    @NonNull
+    private IssueStatus status;
+
+    @Column
     private String contents;
 
     @Column
+    @NonNull
     private LocalDateTime createdAt;
 
     @Column
+    @NonNull
     private LocalDateTime updatedAt;
 
     @Column
+    @NonNull
     private DueType dueType;
 
     @Column
     private LocalDateTime dueDate;
 
+    public Issue() {
+
+    }
 }
