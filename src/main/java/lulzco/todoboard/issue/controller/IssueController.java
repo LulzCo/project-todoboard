@@ -2,6 +2,8 @@ package lulzco.todoboard.issue.controller;
 
 import lulzco.todoboard.issue.data.entity.Issue;
 import lulzco.todoboard.issue.service.IssueService;
+import lulzco.todoboard.issue.tag.Tag;
+import lulzco.todoboard.issue.tag.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +16,12 @@ import java.util.List;
 public class IssueController {
 
     private final IssueService issueService;
+    private final TagService tagService;
 
     @Autowired
-    public IssueController(IssueService issueService) {
+    public IssueController(IssueService issueService, TagService tagService) {
         this.issueService = issueService;
+        this.tagService = tagService;
     }
 
     // 이슈 생성하기
@@ -46,5 +50,13 @@ public class IssueController {
     public ResponseEntity<String> delete(@PathVariable("id") Long id) {
         issueService.delete(id);
         return ResponseEntity.status(HttpStatus.OK).body("이슈 삭제 완료");
+    }
+
+    // userId와 tagId로 이슈 조회하기
+    @GetMapping("/read/{userId}/{tagId}")
+    public ResponseEntity<List<Issue>> findIssueByUserIdAndTag(@PathVariable("userId") String userId, @PathVariable("tagId") Long tagId) {
+        Tag tag = tagService.getTagById(tagId);
+        List<Issue> found = issueService.getIssueByTag(userId, tag.getTagName());
+        return ResponseEntity.status(HttpStatus.OK).body(found);
     }
 }
