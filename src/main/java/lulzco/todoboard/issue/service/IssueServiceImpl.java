@@ -47,4 +47,9 @@ public class IssueServiceImpl implements IssueService {
     public List<Issue> getIssueByUserId(String userId) {
         return issueRepository.findByUserId(userId);
     }
+
+    @Override
+    public List<Issue> getIssueByTag(String userId, String tag) {
+        return issueRepository.findByTag(userId, tag);
+    }
 }

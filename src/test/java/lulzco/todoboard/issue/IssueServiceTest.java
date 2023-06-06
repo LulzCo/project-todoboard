@@ -85,6 +85,15 @@ class IssueServiceTest {
 
     }
 
+    @DisplayName("사용자 아이디와 태그로 이슈 조회하기")
+    @Test
+    void getIssueByTag() {
+        Issue issue = createIssue();
+        List<Issue> founds = issueService.getIssueByTag(issue.getUserId(), issue.getTag());
+
+        assertThat(founds.get(founds.size() - 1)).isEqualTo(issue);
+    }
+
     private Issue createIssue() {
         String userId = "test user";
         String title = "test title";

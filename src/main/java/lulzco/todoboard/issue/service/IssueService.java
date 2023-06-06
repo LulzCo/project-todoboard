@@ -14,4 +14,7 @@ public interface IssueService {
     void delete(Long id);
 
     List<Issue> getIssueByUserId(String userId);
+
+    List<Issue> getIssueByTag(String userId, String tag);
 }
+
