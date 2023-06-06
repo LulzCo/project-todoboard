@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.*;
 
 @SpringBootTest
@@ -54,6 +56,17 @@ class TagServiceTest {
         Tag deletedTag = tagService.getTagById(tag.getId());
 
         assertThat(deletedTag).isNull();
+
+    }
+
+    @DisplayName("userId로 tag 조회하기")
+    @Test
+    void getTagByUserId() {
+        Tag tag = createTag();
+
+        List<Tag> tags = tagService.getTagByUserId(tag.getUserId());
+
+        assertThat(tags.get(tags.size() - 1)).isEqualTo(tag);
 
     }
 
