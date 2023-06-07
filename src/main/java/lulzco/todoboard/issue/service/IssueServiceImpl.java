@@ -49,7 +49,7 @@ public class IssueServiceImpl implements IssueService {
     }
 
     @Override
-    public List<Issue> getIssueByTag(String userId, String tag) {
+    public List<Issue> getIssueByTagName(String userId, String tag) {
         return issueRepository.findByTag(userId, tag);
     }
 }

@@ -56,7 +56,7 @@ public class IssueController {
     @GetMapping("/read/{userId}/{tagId}")
     public ResponseEntity<List<Issue>> findIssueByUserIdAndTag(@PathVariable("userId") String userId, @PathVariable("tagId") Long tagId) {
         Tag tag = tagService.getTagById(tagId);
-        List<Issue> found = issueService.getIssueByTag(userId, tag.getTagName());
+        List<Issue> found = issueService.getIssueByTagName(userId, tag.getTagName());
         return ResponseEntity.status(HttpStatus.OK).body(found);
     }
 }

@@ -4,6 +4,7 @@ import lulzco.todoboard.issue.data.DueType;
 import lulzco.todoboard.issue.data.IssueStatus;
 import lulzco.todoboard.issue.data.entity.Issue;
 import lulzco.todoboard.issue.service.IssueService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,11 @@ class IssueServiceTest {
         this.issueService = issueService;
     }
 
+    @BeforeEach
+    void setUp() {
+        create();
+    }
+
     @DisplayName("생성 후 조회 테스트")
     @Test
     void create() {
@@ -41,7 +47,7 @@ class IssueServiceTest {
 
         String userId2 = "test user2";
         String title2 = "test title2";
-        String tag2 = "test tag2";
+        String tagName2 = "test tagName2";
         String contents2 = "test contents2";
         LocalDateTime updatedAt2 = LocalDateTime.now();
         DueType dueType2 = DueType.SCHECDULE;
@@ -49,7 +55,7 @@ class IssueServiceTest {
 
         issue.setUserId(userId2);
         issue.setTitle(title2);
-        issue.setTag(tag2);
+        issue.setTagName(tagName2);
         issue.setContents(contents2);
         issue.setUpdatedAt(updatedAt2);
         issue.setDueType(dueType2);
@@ -87,9 +93,9 @@ class IssueServiceTest {
 
     @DisplayName("사용자 아이디와 태그로 이슈 조회하기")
     @Test
-    void getIssueByTag() {
+    void getIssueByTagName() {
         Issue issue = createIssue();
-        List<Issue> founds = issueService.getIssueByTag(issue.getUserId(), issue.getTag());
+        List<Issue> founds = issueService.getIssueByTagName(issue.getUserId(), issue.getTagName());
 
         assertThat(founds.get(founds.size() - 1)).isEqualTo(issue);
     }
@@ -97,7 +103,7 @@ class IssueServiceTest {
     private Issue createIssue() {
         String userId = "test user";
         String title = "test title";
-        String tag = "test tag";
+        String tagName = "test tagName";
         IssueStatus status = IssueStatus.TODO;
         String contents = "test contents";
         LocalDateTime createdAt = LocalDateTime.now();
@@ -108,7 +114,7 @@ class IssueServiceTest {
         Issue issue = new Issue();
         issue.setUserId(userId);
         issue.setTitle(title);
-        issue.setTag(tag);
+        issue.setTagName(tagName);
         issue.setStatus(status);
         issue.setContents(contents);
         issue.setCreatedAt(createdAt);

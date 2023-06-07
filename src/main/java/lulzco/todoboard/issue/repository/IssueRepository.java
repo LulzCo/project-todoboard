@@ -12,6 +12,6 @@ import java.util.List;
 public interface IssueRepository extends JpaRepository<Issue, Long> {
     List<Issue> findByUserId(String userId);
 
-    @Query("SELECT i FROM Issue i WHERE i.userId = :userId AND i.tag = :tag")
-    List<Issue> findByTag(@Param("userId") String userId, @Param("tag") String tag);
+    @Query("SELECT i FROM Issue i WHERE i.userId = :userId AND i.tagName = :tagName")
+    List<Issue> findByTag(@Param("userId") String userId, @Param("tagName") String tagName);
 }

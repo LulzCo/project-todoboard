@@ -15,6 +15,6 @@ public interface IssueService {
 
     List<Issue> getIssueByUserId(String userId);
 
-    List<Issue> getIssueByTag(String userId, String tag);
+    List<Issue> getIssueByTagName(String userId, String tag);
 }
 

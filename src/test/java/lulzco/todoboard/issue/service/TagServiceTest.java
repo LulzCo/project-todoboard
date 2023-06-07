@@ -3,6 +3,7 @@ package lulzco.todoboard.issue.service;
 import lulzco.todoboard.issue.tag.Tag;
 import lulzco.todoboard.issue.tag.TagService;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,10 @@ class TagServiceTest {
         this.tagService = tagService;
     }
 
+    @BeforeEach
+    void setUp() {
+        create();
+    }
 
     @DisplayName("tag 생성 후 조회")
     @Test

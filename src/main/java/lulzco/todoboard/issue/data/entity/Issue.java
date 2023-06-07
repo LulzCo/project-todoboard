@@ -24,7 +24,7 @@ public class Issue {
     private String title;
 
     @Column
-    private String tag;
+    private String tagName;
 
     @Column
     @NonNull
