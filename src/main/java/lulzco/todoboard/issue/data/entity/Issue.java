@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NonNull;
 import lulzco.todoboard.issue.data.DueType;
 import lulzco.todoboard.issue.data.IssueStatus;
+import lulzco.todoboard.issue.tag.Tag;
 
 import java.time.LocalDateTime;
 
@@ -25,6 +26,10 @@ public class Issue {
 
     @Column
     private String tagName;
+
+    @ManyToOne
+    @JoinColumn(name = "tag_id")
+    private Tag tag;
 
     @Column
     @NonNull

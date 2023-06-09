@@ -4,6 +4,7 @@ import lulzco.todoboard.issue.data.DueType;
 import lulzco.todoboard.issue.data.IssueStatus;
 import lulzco.todoboard.issue.data.entity.Issue;
 import lulzco.todoboard.issue.service.IssueService;
+import lulzco.todoboard.issue.tag.TagService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,10 +20,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 class IssueServiceTest {
 
     private final IssueService issueService;
+    private final TagService tagService;
 
     @Autowired
-    IssueServiceTest(IssueService issueService) {
+    IssueServiceTest(IssueService issueService, TagService tagService) {
         this.issueService = issueService;
+        this.tagService = tagService;
     }
 
     @BeforeEach
@@ -103,7 +106,8 @@ class IssueServiceTest {
     private Issue createIssue() {
         String userId = "test user";
         String title = "test title";
-        String tagName = "test tagName";
+        Long tagId = 1l;
+        String tagName = tagService.getTagById(tagId).getTagName();
         IssueStatus status = IssueStatus.TODO;
         String contents = "test contents";
         LocalDateTime createdAt = LocalDateTime.now();
