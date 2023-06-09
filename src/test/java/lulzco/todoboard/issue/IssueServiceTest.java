@@ -2,8 +2,10 @@ package lulzco.todoboard.issue;
 
 import lulzco.todoboard.issue.data.DueType;
 import lulzco.todoboard.issue.data.IssueStatus;
+import lulzco.todoboard.issue.data.dto.CreateIssueDto;
 import lulzco.todoboard.issue.data.entity.Issue;
 import lulzco.todoboard.issue.service.IssueService;
+import lulzco.todoboard.issue.tag.Tag;
 import lulzco.todoboard.issue.tag.TagService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -104,10 +106,20 @@ class IssueServiceTest {
     }
 
     private Issue createIssue() {
+
+        String tempUserId = "test userId";
+        String tempTagName = "test tag";
+
+        Tag tempTag = new Tag();
+        tempTag.setUserId(tempUserId);
+        tempTag.setTagName(tempTagName);
+
+        tagService.create(tempTag);
+
+        ////////////////////////////////////////////
         String userId = "test user";
         String title = "test title";
-        Long tagId = 1l;
-        String tagName = tagService.getTagById(tagId).getTagName();
+        Long tagId = tempTag.getId();
         IssueStatus status = IssueStatus.TODO;
         String contents = "test contents";
         LocalDateTime createdAt = LocalDateTime.now();
@@ -115,17 +127,17 @@ class IssueServiceTest {
         DueType dueType = DueType.DEADLINE;
         LocalDateTime dueDate = LocalDateTime.of(2024, 12, 25, 23, 59);
 
-        Issue issue = new Issue();
-        issue.setUserId(userId);
-        issue.setTitle(title);
-        issue.setTagName(tagName);
-        issue.setStatus(status);
-        issue.setContents(contents);
-        issue.setCreatedAt(createdAt);
-        issue.setUpdatedAt(updatedAt);
-        issue.setDueType(dueType);
-        issue.setDueDate(dueDate);
-        issueService.create(issue);
-        return issue;
+        CreateIssueDto createIssueDto = new CreateIssueDto();
+        createIssueDto.setUserId(userId);
+        createIssueDto.setTitle(title);
+        createIssueDto.setTagId(tagId);
+        createIssueDto.setStatus(status);
+        createIssueDto.setContents(contents);
+        createIssueDto.setCreatedAt(createdAt);
+        createIssueDto.setUpdatedAt(updatedAt);
+        createIssueDto.setDueType(dueType);
+        createIssueDto.setDueDate(dueDate);
+
+        return issueService.create(createIssueDto);
     }
 }

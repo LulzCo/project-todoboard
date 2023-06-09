@@ -1,11 +1,12 @@
 package lulzco.todoboard.issue.service;
 
+import lulzco.todoboard.issue.data.dto.CreateIssueDto;
 import lulzco.todoboard.issue.data.entity.Issue;
 
 import java.util.List;
 
 public interface IssueService {
-    void create(Issue issue);
+    Issue create(CreateIssueDto createIssueDto);
 
     Issue getIssueById(Long id);
 

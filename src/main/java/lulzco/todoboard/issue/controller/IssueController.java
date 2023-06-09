@@ -1,5 +1,6 @@
 package lulzco.todoboard.issue.controller;
 
+import lulzco.todoboard.issue.data.dto.CreateIssueDto;
 import lulzco.todoboard.issue.data.entity.Issue;
 import lulzco.todoboard.issue.service.IssueService;
 import lulzco.todoboard.issue.tag.Tag;
@@ -26,8 +27,8 @@ public class IssueController {
 
     // 이슈 생성하기
     @PostMapping("/create")
-    public ResponseEntity<String> create(@RequestBody Issue issue) {
-        issueService.create(issue);
+    public ResponseEntity<String> create(@RequestBody CreateIssueDto createIssueDto) {
+        issueService.create(createIssueDto);
         return ResponseEntity.status(HttpStatus.OK).body("이슈 생성 완료");
     }
 
