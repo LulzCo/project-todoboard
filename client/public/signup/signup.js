@@ -25,7 +25,9 @@ function handleFormSubmit(event) {
         .then(result => {
           // 요청에 대한 처리
           alert(result);
-          window.location.href = '../home/home.html';
+          if (result == "회원가입이 완료되었습니다.") {
+            window.location.href = '../home/home.html';
+          }
         })
         .catch(error => {
           // 오류 처리

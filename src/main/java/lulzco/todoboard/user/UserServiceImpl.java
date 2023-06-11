@@ -16,7 +16,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void create(User user) {
+    public void create(User user) throws DuplicateIdException {
+        if (isIdDuplicated(user.getUserId())) {
+            throw new DuplicateIdException("아이디가 이미 사용 중입니다.");
+        }
         userRepository.save(user);
     }
 
@@ -28,5 +31,10 @@ public class UserServiceImpl implements UserService {
             user = found.get();
         }
         return user;
+    }
+
+    @Override
+    public boolean isIdDuplicated(String userId) {
+        return userRepository.existsByUserId(userId);
     }
 }

@@ -19,7 +19,7 @@ class UserServiceTest {
 
     @Test
     @DisplayName("사용자 생성 및 조회")
-    void create() {
+    void create() throws DuplicateIdException {
         String name = "홍길동";
         String userId = "ghdrlfehd1234";
         String password = "rlfehddl1234";
