@@ -25,7 +25,7 @@ public class UserController {
             userService.create(user);
             return ResponseEntity.status(HttpStatus.OK).body("회원가입이 완료되었습니다.");
         } catch (DuplicateIdException e) {
-            return ResponseEntity.status(HttpStatus.OK).body("중복된 아이디가 존재합니다.");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("중복된 아이디가 존재합니다.");
         }
 
     }
