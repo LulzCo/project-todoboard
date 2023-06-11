@@ -3,14 +3,14 @@ function handleFormSubmit(event) {
 
         // 입력값 가져오기
         const name = document.getElementById('name').value;
-        const username = document.getElementById('userId').value;
+        const userId = document.getElementById('userId').value;
         const password = document.getElementById('password').value;
 
         // POST 요청 보내기
         const url = 'http://localhost:8080/user/signup';
         const data = {
           name: name,
-          username: username,
+          userId: userId,
           password: password
         };
 
@@ -21,10 +21,11 @@ function handleFormSubmit(event) {
           },
           body: JSON.stringify(data)
         })
-        .then(response => response.json())
+        .then(response => response.text())
         .then(result => {
           // 요청에 대한 처리
-          console.log(result);
+          alert(result);
+          window.location.href = '../home/home.html';
         })
         .catch(error => {
           // 오류 처리
