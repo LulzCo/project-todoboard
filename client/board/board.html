@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Board</title>
+    <style>
+    .board {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .column {
+      flex: 1;
+      margin: 10px;
+      padding: 10px;
+      background-color: #f0f0f0;
+    }
+
+    .issue {
+      margin-bottom: 5px;
+      padding: 5px;
+      background-color: #ffffff;
+      border: 1px solid #cccccc;
+    }
+  </style>
+</head>
+<body>
+<div class="board">
+    <div class="column">
+        <h2>To Do</h2>
+        <div class="issue">Task 1</div>
+        <div class="issue">Task 2</div>
+        <div class="issue">Task 3</div>
+    </div>
+    <div class="column">
+        <h2>In Progress</h2>
+        <div class="issue">Task 4</div>
+        <div class="issue">Task 5</div>
+    </div>
+    <div class="column">
+        <h2>Done</h2>
+        <div class="issue">Task 6</div>
+    </div>
+</div>
+<div class="board">
+    <div class="column">
+        <h2>BackLog</h2>
+    </div>
+</div>
+</body>
+</html>
