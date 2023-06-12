@@ -45,15 +45,22 @@ function drop() {
 }
 
 const modalOverlay = document.getElementById('modalOverlay');
-const modalTitle = document.getElementById('modalTitle');
-const modalDescription = document.getElementById('modalDescription');
+const modalContainer = document.getElementById('modalContainer');
 
 function openModal(task) {
-    modalTitle.textContent = task;
-    modalDescription.textContent = "Task details here...";
-    modalOverlay.classList.add('active');
+    // AJAX 요청을 통해 issue.html 파일을 가져옴
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'issue.html', true);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        modalContainer.innerHTML = xhr.responseText;
+        modalOverlay.classList.add('active');
+      }
+    };
+    xhr.send();
 }
 
 function closeModal() {
     modalOverlay.classList.remove('active');
+    modalContainer.innerHTML = '';
 }
