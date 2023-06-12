@@ -13,6 +13,7 @@
       margin: 10px;
       padding: 10px;
       background-color: #f0f0f0;
+      position: relative; /* 추가: 상대적인 위치 지정 */
     }
 
     .issue {
@@ -21,30 +22,48 @@
       background-color: #ffffff;
       border: 1px solid #cccccc;
     }
+
+    .add-button {
+      position: absolute; /* 추가: 절대 위치 지정 */
+      top: 0; /* 추가: 오른쪽 상단에 위치하도록 조정 */
+      right: 0; /* 추가: 오른쪽 상단에 위치하도록 조정 */
+      margin: 5px; /* 추가: 마진 조정 */
+      padding: 5px; /* 추가: 패딩 조정 */
+      background-color: #cccccc;
+      color: #ffffff;
+      border: none;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
 <div class="board">
     <div class="column">
         <h2>To Do</h2>
-        <div class="issue">Task 1</div>
-        <div class="issue">Task 2</div>
-        <div class="issue">Task 3</div>
+        <div class="issue" draggable="true">Task 1</div>
+        <div class="issue" draggable="true">Task 2</div>
+        <div class="issue" draggable="true">>Task 3</div>
+        <button class="add-button">+</button> <!-- 추가 버튼 -->
     </div>
     <div class="column">
         <h2>In Progress</h2>
-        <div class="issue">Task 4</div>
-        <div class="issue">Task 5</div>
+        <div class="issue" draggable="true">>Task 4</div>
+        <div class="issue" draggable="true">>Task 5</div>
+        <button class="add-button">+</button> <!-- 추가 버튼 -->
     </div>
     <div class="column">
         <h2>Done</h2>
-        <div class="issue">Task 6</div>
+        <div class="issue" draggable="true">>Task 6</div>
+        <button class="add-button">+</button> <!-- 추가 버튼 -->
     </div>
 </div>
 <div class="board">
     <div class="column">
         <h2>BackLog</h2>
+        <div class="issue" draggable="true">>Task 7</div>
+        <button class="add-button">+</button> <!-- 추가 버튼 -->
     </div>
 </div>
+<script src="src/board/board.js"></script>
 </body>
 </html>
