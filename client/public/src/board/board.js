@@ -1,8 +1,6 @@
 userId = "test user";
 callBoard(userId);
 function callBoard(userId) {
-//    event.preventDefault(); // 기본 폼 제출 동작 방지
-
     // POST 요청 보내기
     const url = 'http://localhost:8080/issue/read/' + userId;
 
@@ -21,11 +19,25 @@ function callBoard(userId) {
     })
     .then(data => {
         console.log(data);
+        updateBoard(data);
     })
     .catch(error => {
       // 오류 처리
       console.error('Error:', error);
     });
+}
+
+function updateBoard(data) {
+//    var todo = document.getElementById('todo');
+    var parentElement = document.querySelector('#todo');
+    var newIssue = document.createElement('div');
+    newIssue.className = 'issue';
+    newIssue.draggable = true;
+    newIssue.textContent = data[0].title;
+    newIssue.addEventListener('click', function() {
+      openModal(data[0].title);
+    });
+    parentElement.appendChild(newIssue);
 }
 
 const issues = document.querySelectorAll('.issue');
