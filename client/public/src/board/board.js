@@ -1,3 +1,33 @@
+userId = "test user";
+callBoard(userId);
+function callBoard(userId) {
+//    event.preventDefault(); // 기본 폼 제출 동작 방지
+
+    // POST 요청 보내기
+    const url = 'http://localhost:8080/issue/read/' + userId;
+
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error('오류 발생');
+        }
+    })
+    .then(data => {
+        console.log(data);
+    })
+    .catch(error => {
+      // 오류 처리
+      console.error('Error:', error);
+    });
+}
+
 const issues = document.querySelectorAll('.issue');
 
 let draggingIssue = null;
