@@ -43,3 +43,17 @@ function drop() {
     this.appendChild(draggingIssue);
     this.classList.remove('hovered');
 }
+
+const modalOverlay = document.getElementById('modalOverlay');
+const modalTitle = document.getElementById('modalTitle');
+const modalDescription = document.getElementById('modalDescription');
+
+function openModal(task) {
+    modalTitle.textContent = task;
+    modalDescription.textContent = "Task details here...";
+    modalOverlay.classList.add('active');
+}
+
+function closeModal() {
+    modalOverlay.classList.remove('active');
+}
