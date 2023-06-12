@@ -5,9 +5,43 @@
     <title>Title</title>
 </head>
 <body>
-<div>
+<div class="issue-details">
     <h2>Task Details</h2>
-    <p>This is the detailed information for the task.</p>
+    <div class="issue-field">
+        <span class="field-label">Title:</span>
+        <input type="text" class="field-value" value="{{title}}" />
+    </div>
+    <div class="issue-field">
+        <span class="field-label">Tag:</span>
+        <input type="text" class="field-value" value="{{tagName}}" />
+    </div>
+    <div class="issue-field">
+        <span class="field-label">Status:</span>
+        <input type="text" class="field-value" value="{{status}}" />
+    </div>
+    <div class="issue-field">
+        <span class="field-label">Contents:</span>
+        <textarea class="field-value">{{contents}}</textarea>
+    </div>
+    <div class="issue-field">
+        <span class="field-label">Created At:</span>
+        <span class="field-value">{{createAt}}</span>
+    </div>
+    <div class="issue-field">
+        <span class="field-label">Updated At:</span>
+        <span class="field-value">{{updateAt}}</span>
+    </div>
+    <div class="issue-field">
+        <span class="field-label">Due Type:</span>
+        <input type="text" class="field-value" value="{{dueType}}" />
+    </div>
+    <div class="issue-field">
+        <span class="field-label">Due Date:</span>
+        <input type="text" class="field-value" value="{{dueDate}}" />
+    </div>
+    <button class="edit-button" onclick="editIssue()">Edit</button>
+    <button class="save-button" onclick="saveIssue()">Save</button>
 </div>
+<script src="src/board/issue.js"></script>
 </body>
 </html>
