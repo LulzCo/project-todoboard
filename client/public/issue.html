@@ -2,11 +2,74 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Issue</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .issue-details {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .issue-details h2 {
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .issue-field {
+            margin-bottom: 10px;
+        }
+
+        .field-label {
+            display: inline-block;
+            width: 100px;
+            font-weight: bold;
+        }
+
+        .field-value {
+            display: inline-block;
+            width: calc(100% - 100px);
+            padding: 5px;
+            border: 1px solid #cccccc;
+            border-radius: 3px;
+        }
+
+        .field-value[type="text"],
+        .field-value[type="textarea"] {
+            height: 30px;
+        }
+
+        .field-value[type="textarea"] {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .edit-button,
+        .save-button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .edit-button:hover,
+        .save-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
 <div class="issue-details">
-    <h2>Task Details</h2>
+    <h2>Issue Details</h2>
     <div class="issue-field">
         <span class="field-label">Title:</span>
         <input type="text" class="field-value" value="{{title}}" />
