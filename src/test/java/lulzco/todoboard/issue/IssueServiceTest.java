@@ -120,7 +120,7 @@ class IssueServiceTest {
         String userId = "test user";
         String title = "test title";
         Long tagId = tempTag.getId();
-        IssueStatus status = IssueStatus.TODO;
+        IssueStatus status = IssueStatus.DONE;
         String contents = "test contents";
         LocalDateTime createdAt = LocalDateTime.now();
         LocalDateTime updatedAt = LocalDateTime.now();

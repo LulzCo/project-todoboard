@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.UUID;
+
 @SpringBootTest
 class UserServiceTest {
 
@@ -21,7 +23,8 @@ class UserServiceTest {
     @DisplayName("사용자 생성 및 조회")
     void create() throws DuplicateIdException {
         String name = "홍길동";
-        String userId = "ghdrlfehd1234";
+
+        String userId = String.valueOf(UUID.randomUUID());;
         String password = "rlfehddl1234";
 
         User user = new User();
