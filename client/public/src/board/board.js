@@ -28,14 +28,25 @@ function callBoard(userId) {
 }
 
 function updateBoard(data) {
-//    var todo = document.getElementById('todo');
-    var parentElement = document.querySelector('#todo');
-    var newIssue = document.createElement('div');
+    for (let i = 0; i < data.length; i++) {
+        if (data[i].status == "TODO") {
+            setBoard(data, "TODO", i);
+        } else if (data[i].status == "DOING") {
+            setBoard(data, "DOING", i);
+        } else if (data[i].status == "DONE") {
+            setBoard(data, "DONE", i);
+        }
+    }
+}
+
+function setBoard(data, status, i) {
+    let parentElement = document.querySelector('#' + status);
+    let newIssue = document.createElement('div');
     newIssue.className = 'issue';
     newIssue.draggable = true;
-    newIssue.textContent = data[0].title;
+    newIssue.textContent = data[i].title;
     newIssue.addEventListener('click', function() {
-      openModal(data[0].title);
+        openModal(data[i].title);
     });
     parentElement.appendChild(newIssue);
 }
