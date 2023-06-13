@@ -1,4 +1,4 @@
-userId = "test user";
+userId = "성";
 callBoard(userId);
 
 function callBoard(userId) {
@@ -19,7 +19,6 @@ function callBoard(userId) {
         }
     })
     .then(data => {
-        console.log(data);
         updateBoard(data);
     })
     .catch(error => {
@@ -56,7 +55,7 @@ function setBoard(data, status, i) {
     newIssue.draggable = true;
     newIssue.textContent = data[i].title;
     newIssue.addEventListener('click', function() {
-        openModal(data[i].id);
+        openModal(data[i]);
     });
     parentElement.appendChild(newIssue);
 }
@@ -67,7 +66,6 @@ let draggingIssue = null;
 
 function dragStart() {
     draggingIssue = this;
-//    console.log(draggingIssue);
     this.classList.add('dragging');
 }
 
@@ -106,10 +104,11 @@ function drop() {
 const modalOverlay = document.getElementById('modalOverlay');
 const modalContainer = document.getElementById('modalContainer');
 
-function openModal(id) {
+function openModal(issue) {
+    data = JSON.stringify(issue);
     // AJAX 요청을 통해 issue.html 파일을 가져옴
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', 'issue.html', true);
+    xhr.open('GET', 'issue.html?data?=' + encodeURIComponent(data), true);
     xhr.onreadystatechange = function() {
       if (xhr.readyState === 4 && xhr.status === 200) {
         modalContainer.innerHTML = xhr.responseText;

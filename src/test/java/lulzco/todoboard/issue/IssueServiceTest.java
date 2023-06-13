@@ -117,7 +117,7 @@ class IssueServiceTest {
         tagService.create(tempTag);
 
         ////////////////////////////////////////////
-        String userId = "test user";
+        String userId = "성";
         String title = "test title";
         Long tagId = tempTag.getId();
         IssueStatus status = IssueStatus.BACKLOG;

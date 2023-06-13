@@ -72,35 +72,35 @@
     <h2>Issue Details</h2>
     <div class="issue-field">
         <span class="field-label">Title:</span>
-        <input type="text" class="field-value" value="{{title}}" />
+        <input id="title" type="text" class="field-value" value="title" />
     </div>
     <div class="issue-field">
         <span class="field-label">Tag:</span>
-        <input type="text" class="field-value" value="{{tagName}}" />
+        <input id="tag" type="text" class="field-value" value="{{tagName}}" />
     </div>
     <div class="issue-field">
         <span class="field-label">Status:</span>
-        <input type="text" class="field-value" value="{{status}}" />
+        <input id="status" type="text" class="field-value" value="{{status}}" />
     </div>
     <div class="issue-field">
         <span class="field-label">Contents:</span>
-        <textarea class="field-value">{{contents}}</textarea>
+        <textarea id="contents" class="field-value">{{contents}}</textarea>
     </div>
     <div class="issue-field">
         <span class="field-label">Created At:</span>
-        <span class="field-value">{{createAt}}</span>
+        <span id="createdAt" class="field-value">{{createAt}}</span>
     </div>
     <div class="issue-field">
         <span class="field-label">Updated At:</span>
-        <span class="field-value">{{updateAt}}</span>
+        <span id="updatedAt" class="field-value">{{updateAt}}</span>
     </div>
     <div class="issue-field">
         <span class="field-label">Due Type:</span>
-        <input type="text" class="field-value" value="{{dueType}}" />
+        <input id="dueType" type="text" class="field-value" value="{{dueType}}" />
     </div>
     <div class="issue-field">
         <span class="field-label">Due Date:</span>
-        <input type="text" class="field-value" value="{{dueDate}}" />
+        <input id="dueData" type="text" class="field-value" value="{{dueDate}}" />
     </div>
     <button class="edit-button" onclick="editIssue()">Edit</button>
     <button class="save-button" onclick="saveIssue()">Save</button>

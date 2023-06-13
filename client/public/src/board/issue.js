@@ -1,3 +1,13 @@
+// issue.html
+// URL 매개변수 추출
+const urlParams = new URLSearchParams(window.location.search);
+const data = urlParams.get('data');
+console.log(data);
+
+// 데이터 사용
+//document.getElementById('taskName').innerText = taskName;
+
+
 function editIssue() {
   const issueFields = document.getElementsByClassName('field-value');
   const editButton = document.querySelector('.edit-button');
