@@ -35,6 +35,8 @@ function updateBoard(data) {
             setBoard(data, "DOING", i);
         } else if (data[i].status == "DONE") {
             setBoard(data, "DONE", i);
+        } else if (data[i].status == "BACKLOG") {
+            setBoard(data, "BACKLOG", i);
         }
     }
 }
