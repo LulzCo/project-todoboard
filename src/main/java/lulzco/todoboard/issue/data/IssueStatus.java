@@ -1,5 +1,5 @@
 package lulzco.todoboard.issue.data;
 
 public enum IssueStatus {
-    TODO, DOING, DONE
+    TODO, DOING, DONE, BACKLOG
 }
