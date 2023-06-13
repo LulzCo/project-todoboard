@@ -1,5 +1,6 @@
 userId = "test user";
 callBoard(userId);
+
 function callBoard(userId) {
     // POST 요청 보내기
     const url = 'http://localhost:8080/issue/read/' + userId;
@@ -39,6 +40,13 @@ function updateBoard(data) {
             setBoard(data, "BACKLOG", i);
         }
     }
+
+    // 드래그 기능을 위해 새로 세팅
+    let = issues = document.querySelectorAll('.issue');
+    issues.forEach(issue => {
+        issue.addEventListener('dragstart', dragStart);
+        issue.addEventListener('dragend', dragEnd);
+    });
 }
 
 function setBoard(data, status, i) {
@@ -48,22 +56,18 @@ function setBoard(data, status, i) {
     newIssue.draggable = true;
     newIssue.textContent = data[i].title;
     newIssue.addEventListener('click', function() {
-        openModal(data[i].title);
+        openModal(data[i].id);
     });
     parentElement.appendChild(newIssue);
 }
 
-const issues = document.querySelectorAll('.issue');
+
 
 let draggingIssue = null;
 
-issues.forEach(issue => {
-    issue.addEventListener('dragstart', dragStart);
-    issue.addEventListener('dragend', dragEnd);
-});
-
 function dragStart() {
     draggingIssue = this;
+//    console.log(draggingIssue);
     this.classList.add('dragging');
 }
 
@@ -102,7 +106,7 @@ function drop() {
 const modalOverlay = document.getElementById('modalOverlay');
 const modalContainer = document.getElementById('modalContainer');
 
-function openModal(task) {
+function openModal(id) {
     // AJAX 요청을 통해 issue.html 파일을 가져옴
     const xhr = new XMLHttpRequest();
     xhr.open('GET', 'issue.html', true);
