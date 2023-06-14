@@ -105,20 +105,67 @@ const modalOverlay = document.getElementById('modalOverlay');
 const modalContainer = document.getElementById('modalContainer');
 
 function openModal(issue) {
-    data = JSON.stringify(issue);
-    // AJAX 요청을 통해 issue.html 파일을 가져옴
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', 'issue.html?data?=' + encodeURIComponent(data), true);
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState === 4 && xhr.status === 200) {
-        modalContainer.innerHTML = xhr.responseText;
-        modalOverlay.classList.add('active');
-      }
-    };
-    xhr.send();
+    modalOverlay.classList.add('active');
+    setIssue(issue);
 }
 
 function closeModal() {
     modalOverlay.classList.remove('active');
-    modalContainer.innerHTML = '';
+    document.getElementById("title").value = '';
+    document.getElementById("tag").value = '';
+    document.getElementById("status").value = '';
+    document.getElementById("contents").value = '';
+    document.getElementById("createdAt").innerText = '';
+    document.getElementById("updatedAt").innerText = '';
+    document.getElementById("dueType").value = '';
+    document.getElementById("dueDate").value = '';
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////////////issue
+function setIssue(data) {
+    document.getElementById("title").value = data.title;
+    document.getElementById("tag").value = data.tagName;
+    document.getElementById("status").value = data.status;
+    document.getElementById("contents").value = data.contents;
+    document.getElementById("createdAt").innerText = timeToString(data.createdAt);
+    document.getElementById("updatedAt").innerText = timeToString(data.updatedAt);
+    document.getElementById("dueType").value = data.dueType;
+    document.getElementById("dueDate").value = timeToString(data.dueDate);
+
+}
+
+function timeToString(time) {
+    return time.substring(0, 4) + "년 " + time.substring(5, 7) + "월 " + time.substring(8, 10) + "일 " + time.substring(11, 13) + "시 " + time.substring(14, 16) + "분";
+}
+
+function editIssue() {
+  const issueFields = document.getElementsByClassName('field-value');
+  const editButton = document.querySelector('.edit-button');
+  const saveButton = document.querySelector('.save-button');
+
+  // Enable editing for input fields and textarea
+  Array.from(issueFields).forEach((field) => {
+    field.disabled = false;
+  });
+
+  // Toggle visibility of buttons
+  editButton.style.display = 'none';
+  saveButton.style.display = 'block';
+}
+
+function saveIssue() {
+  const issueFields = document.getElementsByClassName('field-value');
+  const editButton = document.querySelector('.edit-button');
+  const saveButton = document.querySelector('.save-button');
+
+  // Disable editing for input fields and textarea
+  Array.from(issueFields).forEach((field) => {
+    field.disabled = true;
+  });
+
+  // Toggle visibility of buttons
+  editButton.style.display = 'block';
+  saveButton.style.display = 'none';
 }
