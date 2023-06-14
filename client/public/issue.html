@@ -87,20 +87,22 @@
         <textarea id="contents" class="field-value">{{contents}}</textarea>
     </div>
     <div class="issue-field">
-        <span class="field-label">Created At:</span>
-        <span id="createdAt" class="field-value">{{createAt}}</span>
-    </div>
-    <div class="issue-field">
-        <span class="field-label">Updated At:</span>
-        <span id="updatedAt" class="field-value">{{updateAt}}</span>
-    </div>
-    <div class="issue-field">
         <span class="field-label">Due Type:</span>
         <input id="dueType" type="text" class="field-value" value="{{dueType}}" />
     </div>
     <div class="issue-field">
         <span class="field-label">Due Date:</span>
-        <input id="dueData" type="text" class="field-value" value="{{dueDate}}" />
+        <input id="dueDate" type="text" class="field-value" value="{{dueDate}}" />
+    </div>
+    <div class="issue-field">
+        <span class="field-label">Created At:</span>
+        <div id="createdAt"></div>
+<!--        <span id="createdAt" class="field-value">{{createAt}}</span>-->
+    </div>
+    <div class="issue-field">
+        <span class="field-label">Updated At:</span>
+        <div id="updatedAt"></div>
+<!--        <span id="updatedAt" class="field-value">{{updateAt}}</span>-->
     </div>
     <button class="edit-button" onclick="editIssue()">Edit</button>
     <button class="save-button" onclick="saveIssue()">Save</button>
