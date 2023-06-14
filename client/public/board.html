@@ -131,6 +131,7 @@
             resize: vertical;
         }
 
+        .delete-button,
         .edit-button,
         .save-button {
             margin-top: 10px;
@@ -140,11 +141,6 @@
             border: none;
             border-radius: 3px;
             cursor: pointer;
-        }
-
-        .edit-button:hover,
-        .save-button:hover {
-            background-color: #0056b3;
         }
 
   </style>
@@ -179,27 +175,27 @@
                     <h2>Issue Details</h2>
                     <div class="issue-field">
                         <span class="field-label">Title:</span>
-                        <input id="title" type="text" class="field-value" value="title" />
+                        <input id="title" type="text" class="field-value" value="" />
                     </div>
                     <div class="issue-field">
                         <span class="field-label">Tag:</span>
-                        <input id="tag" type="text" class="field-value" value="{{tagName}}" />
+                        <input id="tag" type="text" class="field-value" value="" />
                     </div>
                     <div class="issue-field">
                         <span class="field-label">Status:</span>
-                        <input id="status" type="text" class="field-value" value="{{status}}" />
+                        <input id="status" type="text" class="field-value" value="" />
                     </div>
                     <div class="issue-field">
                         <span class="field-label">Contents:</span>
-                        <textarea id="contents" class="field-value">{{contents}}</textarea>
+                        <textarea id="contents" class="field-value"></textarea>
                     </div>
                     <div class="issue-field">
                         <span class="field-label">Due Type:</span>
-                        <input id="dueType" type="text" class="field-value" value="{{dueType}}" />
+                        <input id="dueType" type="text" class="field-value" value="" />
                     </div>
                     <div class="issue-field">
                         <span class="field-label">Due Date:</span>
-                        <input id="dueDate" type="text" class="field-value" value="{{dueDate}}" />
+                        <input id="dueDate" type="text" class="field-value" value="" />
                     </div>
                     <div class="issue-field">
                         <span class="field-label">Created At:</span>
@@ -213,6 +209,7 @@
                     </div>
                     <button class="edit-button" onclick="editIssue()">Edit</button>
                     <button class="save-button" onclick="saveIssue()">Save</button>
+                    <button class="delete-button" onclick="deleteIssue()">Delete</button>
                 </div>
 
             </div>

@@ -106,7 +106,20 @@ const modalContainer = document.getElementById('modalContainer');
 
 function openModal(issue) {
     modalOverlay.classList.add('active');
-    setIssue(issue);
+
+    const editButton = document.querySelector('.edit-button');
+    const saveButton = document.querySelector('.save-button');
+    const deleteButton = document.querySelector('.delete-button');
+    if (issue) {
+        setIssue(issue);
+        editButton.style.display = 'inline';
+        saveButton.style.display = 'inline';
+        deleteButton.style.display = 'inline';
+    } else {
+        editButton.style.display = 'none';
+        saveButton.style.display = 'inline';
+        deleteButton.style.display = 'none';
+    }
 }
 
 function closeModal() {
@@ -133,11 +146,10 @@ function setIssue(data) {
     document.getElementById("updatedAt").innerText = timeToString(data.updatedAt);
     document.getElementById("dueType").value = data.dueType;
     document.getElementById("dueDate").value = timeToString(data.dueDate);
-
 }
 
 function timeToString(time) {
-    return time.substring(0, 4) + "년 " + time.substring(5, 7) + "월 " + time.substring(8, 10) + "일 " + time.substring(11, 13) + "시 " + time.substring(14, 16) + "분";
+    return time.substring(0, 4) + "년" + time.substring(5, 7) + "월" + time.substring(8, 10) + "일 - " + time.substring(11, 13) + "시" + time.substring(14, 16) + "분";
 }
 
 function editIssue() {
@@ -156,6 +168,21 @@ function editIssue() {
 }
 
 function saveIssue() {
+  const issueFields = document.getElementsByClassName('field-value');
+  const editButton = document.querySelector('.edit-button');
+  const saveButton = document.querySelector('.save-button');
+
+  // Disable editing for input fields and textarea
+  Array.from(issueFields).forEach((field) => {
+    field.disabled = true;
+  });
+
+  // Toggle visibility of buttons
+  editButton.style.display = 'block';
+  saveButton.style.display = 'none';
+}
+
+function deleteIssue() {
   const issueFields = document.getElementsByClassName('field-value');
   const editButton = document.querySelector('.edit-button');
   const saveButton = document.querySelector('.save-button');
