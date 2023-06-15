@@ -1,4 +1,5 @@
-userId = "원";
+const userId = "원";
+let tagId = null;
 callBoard(userId);
 callTag(userId);
 function callBoard(userId) {
@@ -57,6 +58,7 @@ function setTags(data) {
     for (let i = 0; i < data.length; i++) {
         let newTag = document.createElement('option');
         newTag.value = data[i].id;
+        newTag.id = 'tag' + data[i].id;
         newTag.textContent = data[i].tagName;
         selectElement.appendChild(newTag);
         let copiedTag = newTag.cloneNode(true);
@@ -65,7 +67,7 @@ function setTags(data) {
 }
 
 function selectedTag() {
-    let tagId = document.querySelector('.tags').value;
+    tagId = document.querySelector('.tags').value;
     if (tagId == "전체") {
         callBoard(userId);
     } else {
@@ -222,6 +224,18 @@ function openModal(issue) {
         deleteButton.style.display = 'none';
         updateButton.style.display = 'none';
 
+        let selectedOption = tagId;
+        // select 요소 가져오기
+        let selectElement = document.getElementById('tag');
+        // select 요소의 옵션들을 순회하며 선택 상태 설정
+        for (let i = 0; i < selectElement.options.length; i++) {
+          let option = selectElement.options[i];
+          if (option.value == selectedOption) {
+            option.selected = true;
+            break;  // 선택되었으므로 더 이상 순회할 필요 없음
+          }
+        }
+
         Array.from(issueFields).forEach((field) => {
             field.disabled = false;
         });
@@ -248,7 +262,21 @@ function closeModal() {
 function setIssue(data) {
     document.getElementById("issueId").value = data.id;
     document.getElementById("title").value = data.title;
-    document.getElementById("tag").value = data.tagName;
+
+//    document.getElementById('tag').selected = 'tag' + data.tag.id;
+    // 선택할 옵션 값
+    var selectedOption = data.tag.id;
+    // select 요소 가져오기
+    var selectElement = document.getElementById('tag');
+    // select 요소의 옵션들을 순회하며 선택 상태 설정
+    for (let i = 0; i < selectElement.options.length; i++) {
+      let option = selectElement.options[i];
+      if (option.value == selectedOption) {
+        option.selected = true;
+        break;  // 선택되었으므로 더 이상 순회할 필요 없음
+      }
+    }
+
     document.getElementById("status").value = data.status;
     document.getElementById("contents").value = data.contents;
 //    document.getElementById("createdAt").innerText = timeToString(data.createdAt);
@@ -322,7 +350,7 @@ function saveIssue() {
     data = {
         userId: userId,
         title: document.getElementById("title").value,
-        tagId: 1,
+        tagId: document.getElementById("tag").value,
         status: "TODO",
         contents: document.getElementById("contents").value,
         dueType: "DEADLINE",
