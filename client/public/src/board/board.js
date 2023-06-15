@@ -45,8 +45,7 @@ function callTag(userId) {
         }
     })
     .then(data => {
-//        setTags(data);
-        console.log(data);
+        setTags(data);
     })
     .catch(error => {
       // 오류 처리
@@ -55,30 +54,16 @@ function callTag(userId) {
 
 }
 
-//function callBoardByTag(userId, tag) {
-//    const url = 'http://localhost:8080/issue/read/' + userId + '/' + tagId;
-//
-//    fetch(url, {
-//      method: 'GET',
-//      headers: {
-//        'Content-Type': 'application/json'
-//      },
-//    })
-//    .then(response => {
-//        if (response.ok) {
-//            return response.json();
-//        } else {
-//            throw new Error('오류 발생');
-//        }
-//    })
-//    .then(data => {
-//        callBoard(userId)
-//    })
-//    .catch(error => {
-//      // 오류 처리
-//      console.error('Error:', error);
-//    });
-//}
+function setTags(data) {
+    let selectElement = document.querySelector('.tags');
+    for (let i = 0; i < data.length; i++) {
+        let newTag = document.createElement('option');
+        newTag.value = data[i].id;
+        newTag.textContent = data[i].tagName;
+        selectElement.appendChild(newTag);
+    }
+}
+
 
 
 function clear() {
