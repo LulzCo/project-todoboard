@@ -55,6 +55,7 @@ function callTag(userId) {
 function setTags(data) {
     let selectElement = document.querySelector('.tags');
     let selectElement2 = document.querySelector('#tag');
+    let selectElement3 = document.getElementById('tagModalTags');
     for (let i = 0; i < data.length; i++) {
         let newTag = document.createElement('option');
         newTag.value = data[i].id;
@@ -62,7 +63,9 @@ function setTags(data) {
         newTag.textContent = data[i].tagName;
         selectElement.appendChild(newTag);
         let copiedTag = newTag.cloneNode(true);
+        let copiedTag2 = copiedTag.cloneNode(true);
         selectElement2.appendChild(copiedTag);
+        selectElement3.appendChild(copiedTag2);
     }
 }
 
@@ -232,8 +235,11 @@ function openModal(issue) {
 
     ///// tagId 연동 부분////////
     let selectedOption = tagId;
+    console.log(tagId)
+    console.log(selectedOption)
     // select 요소 가져오기
-    let selectElement = document.getElementById('tag');
+    let selectElement = document.querySelector('#tag');
+    console.log(selectElement)
     // select 요소의 옵션들을 순회하며 선택 상태 설정
     for (let i = 0; i < selectElement.options.length; i++) {
       let option = selectElement.options[i];
@@ -250,8 +256,6 @@ function closeModal() {
     document.getElementById("tag").value = '';
     document.getElementById("status").value = '';
     document.getElementById("contents").value = '';
-//    document.getElementById("createdAt").innerText = '';
-//    document.getElementById("updatedAt").innerText = '';
     document.getElementById("dueType").value = '';
     document.getElementById("dueDate").value = '';
 
@@ -264,25 +268,8 @@ function closeModal() {
 function setIssue(data) {
     document.getElementById("issueId").value = data.id;
     document.getElementById("title").value = data.title;
-
-////    document.getElementById('tag').selected = 'tag' + data.tag.id;
-//    // 선택할 옵션 값
-//    var selectedOption = data.tag.id;
-//    // select 요소 가져오기
-//    var selectElement = document.getElementById('tag');
-//    // select 요소의 옵션들을 순회하며 선택 상태 설정
-//    for (let i = 0; i < selectElement.options.length; i++) {
-//      let option = selectElement.options[i];
-//      if (option.value == selectedOption) {
-//        option.selected = true;
-//        break;  // 선택되었으므로 더 이상 순회할 필요 없음
-//      }
-//    }
-
     document.getElementById("status").value = data.status;
     document.getElementById("contents").value = data.contents;
-//    document.getElementById("createdAt").innerText = timeToString(data.createdAt);
-//    document.getElementById("updatedAt").innerText = timeToString(data.updatedAt);
     document.getElementById("dueType").value = data.dueType;
     document.getElementById("dueDate").value = timeToString(data.dueDate);
 }
@@ -390,3 +377,131 @@ function deleteIssue() {
           console.error('Error:', error);
         });
 }
+
+
+///////////////////////////////////////////////////////////////태그 관리 페이지
+const tagModalOverlay = document.getElementById('tagModalOverlay');
+const tagModalContainer = document.getElementById('tagModalContainer');
+const tagSaveButton = document.getElementById('tagSave');
+const tagDeleteButton = document.getElementById('tagDelete');
+
+function openTagModal() {
+    tagModalOverlay.classList.add('active');
+    tagSaveButton.style.display = 'inline';
+    tagDeleteButton.style.display = 'inline';
+    let select = document.getElementById('tagModalTags');
+    select.value = "새로 만들기";
+
+    document.getElementById('tagId').value = tagId;
+}
+
+function selectedTagModal() {
+
+    tagId = document.querySelector('#tagModalTags').value;
+
+    if (tagId != "새로 만들기") {
+        tagSaveButton.style.display = 'inline';
+        tagDeleteButton.style.display = 'inline';
+        const url = 'http://localhost:8080/tag/' + tagId;
+
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+        },
+        })
+        .then(response => response.json())
+        .then(result => {
+            document.getElementById('tagName').value = result.tagName;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    } else {
+        document.getElementById('tagName').value = '';
+        tagSaveButton.style.display = 'inline';
+        tagDeleteButton.style.display = 'none';
+    }
+}
+
+function closeTagModal() {
+    tagModalOverlay.classList.remove('active');
+}
+
+function saveTag() {
+    if (tagId == null) {
+        const url = 'http://localhost:8080/tag/create';
+        const data = {
+            userId: userId,
+            tagName: document.getElementById('tagName').value
+        };
+        fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data),
+        })
+        .then(response => response.text())
+        .then(result => {
+            console.log(result);
+            closeTagModal();
+            callBoard(userId);
+            callTag(userId);
+
+        })
+        .catch(error => {
+        console.error('Error:', error);
+        });
+
+    } else {
+        const url = 'http://localhost:8080/tag/update';
+        const data = {
+        id: tagId,
+            userId: userId,
+            tagName: document.getElementById('tagName').value
+        };
+        fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data),
+        })
+        .then(response => response.text())
+        .then(result => {
+            console.log(result);
+            closeTagModal();
+            callBoard(userId);
+            callTag(userId);
+        })
+        .catch(error => {
+        console.error('Error:', error);
+        });
+    }
+}
+
+function deleteTag() {
+    if (tagId != null) {
+        const url = 'http://localhost:8080/tag/delete/' + tagId;
+        fetch(url, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json'
+        },
+        })
+        .then(response => response.text())
+        .then(result => {
+            console.log(result);
+            closeTagModal();
+            callBoard(userId);
+            callTag(userId);
+
+        })
+        .catch(error => {
+        console.error('Error:', error);
+        });
+
+    }
+}
+

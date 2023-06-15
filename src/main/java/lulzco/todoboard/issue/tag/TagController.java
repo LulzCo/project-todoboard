@@ -30,7 +30,7 @@ public class TagController {
         return ResponseEntity.status(HttpStatus.OK).body(tags);
     }
 
-    @PutMapping("/update")
+    @PostMapping("/update")
     public ResponseEntity<String> update(@RequestBody Tag tag) {
         tagService.updateTagName(tag.getId(), tag.getTagName());
         return ResponseEntity.status(HttpStatus.OK).body("태그 수정 완료");
@@ -40,5 +40,11 @@ public class TagController {
     public ResponseEntity<String> delete(@PathVariable("tagId") Long tagId) {
         tagService.delete(tagId);
         return ResponseEntity.status(HttpStatus.OK).body("태그 삭제 완료");
+    }
+
+    @GetMapping("/{tagId}")
+    public ResponseEntity<Tag> findTagById(@PathVariable("tagId") Long tagId) {
+        Tag tag = tagService.getTagById(tagId);
+        return ResponseEntity.status(HttpStatus.OK).body(tag);
     }
 }

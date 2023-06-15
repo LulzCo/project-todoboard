@@ -114,9 +114,10 @@
             font-weight: bold;
         }
 
+        .tag-field-value,
         .field-value {
             display: inline-block;
-            width: calc(100% - 100px);
+            width: calc(100%);
             padding: 5px;
             border: 1px solid #cccccc;
             border-radius: 3px;
@@ -160,28 +161,29 @@
 </head>
 <body>
 <h3>Tag</h3>
-<select class="tags" onchange="selectedTag()">
-<option>전체</option>
-</select>
+<div class="upper-column">
+    <label>
+        <select class="tags" onchange="selectedTag()">
+            <option>전체</option>
+        </select>
+    </label>
+    <button class="add-button" onclick="openTagModal()">태그 관리</button>
+</div>
 <button class="add-button" onclick="openModal()">+</button> <!-- 추가 버튼 -->
 <div class="board">
     <div class="upper-column">
         <div class="column" id="TODO">
             <h2>To Do</h2>
-<!--            <button class="add-button" onclick="openModal()">+</button> &lt;!&ndash; 추가 버튼 &ndash;&gt;-->
         </div>
         <div class="column" id="DOING">
             <h2>DOING</h2>
-<!--            <button class="add-button" onclick="openModal()">+</button> &lt;!&ndash; 추가 버튼 &ndash;&gt;-->
         </div>
         <div class="column" id="DONE">
             <h2>Done</h2>
-<!--            <button class="add-button" onclick="openModal()">+</button> &lt;!&ndash; 추가 버튼 &ndash;&gt;-->
         </div>
     </div>
     <div class="column" id="BACKLOG">
         <h2>BackLog</h2>
-<!--        <button class="add-button" onclick="openModal()">+</button> &lt;!&ndash; 추가 버튼 &ndash;&gt;-->
     </div>
 </div>
 <!-- 모달 -->
@@ -198,13 +200,11 @@
                     </div>
                     <div class="issue-field">
                         <span class="field-label">Tag:</span>
-<!--                        <input id="tag" type="text" class="field-value" value="" />-->
-                        <select id="tag" type="text" class="field-value" value=""></select>
+                        <label for="tag"></label><select id="tag" type="text" class="field-value" value=""></select>
                     </div>
                     <div class="issue-field">
                         <span class="field-label">Status:</span>
-<!--                        <input id="status" type="text" class="field-value" value="" />-->
-                        <select id="status" type="text" class="field-value" value="">
+                        <label for="status"></label><select id="status" type="text" class="field-value" value="">
                             <option value="BACKLOG">BACKLOG</option>
                             <option value="TODO">TODO</option>
                             <option value="DOING">DOING</option>
@@ -213,26 +213,16 @@
                     </div>
                     <div class="issue-field">
                         <span class="field-label">Contents:</span>
-                        <textarea id="contents" class="field-value"></textarea>
+                        <label for="contents"></label><textarea id="contents" class="field-value"></textarea>
                     </div>
                     <div class="issue-field">
                         <span class="field-label">Due Type:</span>
-                        <input id="dueType" type="text" class="field-value" value="" />
+                        <label for="dueType"></label><input id="dueType" type="text" class="field-value" value="" />
                     </div>
                     <div class="issue-field">
                         <span class="field-label">Due Date:</span>
-                        <input id="dueDate" type="text" class="field-value" value="" />
+                        <label for="dueDate"></label><input id="dueDate" type="text" class="field-value" value="" />
                     </div>
-<!--                    <div class="issue-field">-->
-<!--                        <span class="field-label">Created At:</span>-->
-<!--                        <div id="createdAt"></div>-->
-<!--                        &lt;!&ndash;        <span id="createdAt" class="field-value">{{createAt}}</span>&ndash;&gt;-->
-<!--                    </div>-->
-<!--                    <div class="issue-field">-->
-<!--                        <span class="field-label">Updated At:</span>-->
-<!--                        <div id="updatedAt"></div>-->
-<!--                        &lt;!&ndash;        <span id="updatedAt" class="field-value">{{updateAt}}</span>&ndash;&gt;-->
-<!--                    </div>-->
                     <button class="edit-button" onclick="editIssue()">Edit</button>
                     <button class="save-button" onclick="saveIssue()">Save</button>
                     <button class="update-button" onclick="updateIssue()">Save</button>
@@ -244,6 +234,23 @@
         </div>
     </div>
 </div>
+<div id="tagModalOverlay" class="modal-overlay">
+    <div class="modal">
+        <div class="modal-content">
+            <div id="tagModalContainer">
+                <label for="tagModalTags"></label><select id="tagModalTags" class="tag-field-value" onchange="selectedTagModal()">
+                    <option>새로 만들기</option>
+                </select>
+                <input type="hidden" id="tagId" value="">
+                <label for="tagName"></label><input id="tagName" type="text" class="tag-field-value" value="" />
+                        <button id="tagSave" class="save-button" onclick="saveTag()">Save</button>
+                        <button id="tagDelete" class="delete-button" onclick="deleteTag()">Delete</button>
+            </div>
+            <button class="close-button" onclick="closeTagModal()">Close</button>
+        </div>
+    </div>
+</div>
+
 <script src="src/board/board.js"></script>
 </body>
 </html>
