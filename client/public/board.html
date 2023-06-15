@@ -3,6 +3,10 @@
 <head>
     <title>Board</title>
     <style>
+    .upper-column {
+      display: flex;
+      justify-content: space-between;
+    }
 
     .column {
       flex: 1;
@@ -144,20 +148,22 @@
 </head>
 <body>
 <div class="board">
+    <div class="upper-column">
+        <div class="column" id="TODO">
+            <h2>To Do</h2>
+            <button class="add-button" onclick="openModal()">+</button> <!-- 추가 버튼 -->
+        </div>
+        <div class="column" id="DOING">
+            <h2>In Progress</h2>
+            <button class="add-button" onclick="openModal()">+</button> <!-- 추가 버튼 -->
+        </div>
+        <div class="column" id="DONE">
+            <h2>Done</h2>
+            <button class="add-button" onclick="openModal()">+</button> <!-- 추가 버튼 -->
+        </div>
+    </div>
     <div class="column" id="BACKLOG">
         <h2>BackLog</h2>
-        <button class="add-button" onclick="openModal()">+</button> <!-- 추가 버튼 -->
-    </div>
-    <div class="column" id="TODO">
-        <h2>To Do</h2>
-        <button class="add-button" onclick="openModal()">+</button> <!-- 추가 버튼 -->
-    </div>
-    <div class="column" id="DOING">
-        <h2>In Progress</h2>
-        <button class="add-button" onclick="openModal()">+</button> <!-- 추가 버튼 -->
-    </div>
-    <div class="column" id="DONE">
-        <h2>Done</h2>
         <button class="add-button" onclick="openModal()">+</button> <!-- 추가 버튼 -->
     </div>
 </div>
