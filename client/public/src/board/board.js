@@ -130,8 +130,14 @@ function openModal(issue) {
     if (issue) {
         setIssue(issue);
         editButton.style.display = 'inline';
-        saveButton.style.display = 'inline';
-        deleteButton.style.display = 'inline';
+        saveButton.style.display = 'none';
+        deleteButton.style.display = 'none';
+
+        const issueFields = document.getElementsByClassName('field-value');
+          // Disable editing for input fields and textarea
+        Array.from(issueFields).forEach((field) => {
+          field.disabled = true;
+        });
     } else {
         editButton.style.display = 'none';
         saveButton.style.display = 'inline';
@@ -173,6 +179,7 @@ function editIssue() {
   const issueFields = document.getElementsByClassName('field-value');
   const editButton = document.querySelector('.edit-button');
   const saveButton = document.querySelector('.save-button');
+  const deleteButton = document.querySelector('.delete-button');
 
   // Enable editing for input fields and textarea
   Array.from(issueFields).forEach((field) => {
@@ -181,22 +188,25 @@ function editIssue() {
 
   // Toggle visibility of buttons
   editButton.style.display = 'none';
-  saveButton.style.display = 'block';
+  deleteButton.style.display = 'inline';
+  saveButton.style.display = 'inline';
 }
 
 function saveIssue() {
-  const issueFields = document.getElementsByClassName('field-value');
-  const editButton = document.querySelector('.edit-button');
-  const saveButton = document.querySelector('.save-button');
+    const issueFields = document.getElementsByClassName('field-value');
+    const editButton = document.querySelector('.edit-button');
+    const saveButton = document.querySelector('.save-button');
+    const deleteButton = document.querySelector('.delete-button');
 
-  // Disable editing for input fields and textarea
-  Array.from(issueFields).forEach((field) => {
-    field.disabled = true;
-  });
+    // Disable editing for input fields and textarea
+    Array.from(issueFields).forEach((field) => {
+        field.disabled = true;
+    });
 
-  // Toggle visibility of buttons
-  editButton.style.display = 'block';
-  saveButton.style.display = 'none';
+    // Toggle visibility of buttons
+    editButton.style.display = 'inline';
+    deleteButton.style.display = 'none';
+    saveButton.style.display = 'none';
 }
 
 function deleteIssue() {
