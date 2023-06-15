@@ -76,7 +76,7 @@ class TagServiceTest {
     }
 
     private Tag createTag() {
-        String userId = "test userId";
+        String userId = "성";
         String tagName = "test tag";
 
         Tag tag = new Tag();

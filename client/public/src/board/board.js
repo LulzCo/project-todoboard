@@ -1,8 +1,9 @@
 userId = "성";
 callBoard(userId);
+callTag(userId);
 
 function callBoard(userId) {
-//    deleteBoard();
+    clear();
     const url = 'http://localhost:8080/issue/read/' + userId;
 
     fetch(url, {
@@ -27,20 +28,66 @@ function callBoard(userId) {
     });
 }
 
-//function deleteBoard() {
-//    console.log("deleteBoard()")
-//    let temp = ["TODO", "DOING", "DONE", "BACKLOG"];
-//    for (let i = 0; i < temp.length; i++) {
-//        let parentElement = document.getElementById(temp[i]);
-//        let childNodes = parentElement.childNodes;
-//        for (let j = 0; j < childNodes.length + 10; j++) {
-//            let childNode = childNodes[j];
-//            if (childNode.className == 'issue') {
-//                childNode.remove();
-//            }
+function callTag(userId) {
+    const url = 'http://localhost:8080/tag/read/' + userId
+
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error('오류 발생');
+        }
+    })
+    .then(data => {
+//        setTags(data);
+        console.log(data);
+    })
+    .catch(error => {
+      // 오류 처리
+      console.error('Error:', error);
+    });
+
+}
+
+//function callBoardByTag(userId, tag) {
+//    const url = 'http://localhost:8080/issue/read/' + userId + '/' + tagId;
+//
+//    fetch(url, {
+//      method: 'GET',
+//      headers: {
+//        'Content-Type': 'application/json'
+//      },
+//    })
+//    .then(response => {
+//        if (response.ok) {
+//            return response.json();
+//        } else {
+//            throw new Error('오류 발생');
 //        }
-//    }
+//    })
+//    .then(data => {
+//        callBoard(userId)
+//    })
+//    .catch(error => {
+//      // 오류 처리
+//      console.error('Error:', error);
+//    });
 //}
+
+
+function clear() {
+    let issues = document.querySelectorAll('.issue');
+    for(let i = 0; i < issues.length; i++) {
+        let parentElement = issues[i].parentNode;
+        parentElement.removeChild(issues[i]);
+    }
+}
 
 function updateBoard(data) {
     for (let i = 0; i < data.length; i++) {
@@ -97,15 +144,12 @@ function dragEnd(data) {
         })
         .then(response => response.text())
         .then(result => {
-          // 요청에 대한 처리
-//          alert(result);
             this.classList.remove('dragging');
         })
         .catch(error => {
           // 오류 처리
           console.error('Error:', error);
         });
-//    deleteBoard();
 }
 
 const columns = document.querySelectorAll('.column');
@@ -180,7 +224,7 @@ function closeModal() {
     document.getElementById("dueType").value = '';
     document.getElementById("dueDate").value = '';
 
-//    deleteBoard();
+    callBoard(userId);
 }
 
 
