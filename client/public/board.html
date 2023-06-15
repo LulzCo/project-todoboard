@@ -166,6 +166,7 @@
         <div class="modal-content">
             <div id="modalContainer">
                 <div class="issue-details">
+                    <input type="hidden" id="issueId" value="">
                     <h2>Issue Details</h2>
                     <div class="issue-field">
                         <span class="field-label">Title:</span>
@@ -191,16 +192,16 @@
                         <span class="field-label">Due Date:</span>
                         <input id="dueDate" type="text" class="field-value" value="" />
                     </div>
-                    <div class="issue-field">
-                        <span class="field-label">Created At:</span>
-                        <div id="createdAt"></div>
-                        <!--        <span id="createdAt" class="field-value">{{createAt}}</span>-->
-                    </div>
-                    <div class="issue-field">
-                        <span class="field-label">Updated At:</span>
-                        <div id="updatedAt"></div>
-                        <!--        <span id="updatedAt" class="field-value">{{updateAt}}</span>-->
-                    </div>
+<!--                    <div class="issue-field">-->
+<!--                        <span class="field-label">Created At:</span>-->
+<!--                        <div id="createdAt"></div>-->
+<!--                        &lt;!&ndash;        <span id="createdAt" class="field-value">{{createAt}}</span>&ndash;&gt;-->
+<!--                    </div>-->
+<!--                    <div class="issue-field">-->
+<!--                        <span class="field-label">Updated At:</span>-->
+<!--                        <div id="updatedAt"></div>-->
+<!--                        &lt;!&ndash;        <span id="updatedAt" class="field-value">{{updateAt}}</span>&ndash;&gt;-->
+<!--                    </div>-->
                     <button class="edit-button" onclick="editIssue()">Edit</button>
                     <button class="save-button" onclick="saveIssue()">Save</button>
                     <button class="delete-button" onclick="deleteIssue()">Delete</button>

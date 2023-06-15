@@ -151,8 +151,8 @@ function closeModal() {
     document.getElementById("tag").value = '';
     document.getElementById("status").value = '';
     document.getElementById("contents").value = '';
-    document.getElementById("createdAt").innerText = '';
-    document.getElementById("updatedAt").innerText = '';
+//    document.getElementById("createdAt").innerText = '';
+//    document.getElementById("updatedAt").innerText = '';
     document.getElementById("dueType").value = '';
     document.getElementById("dueDate").value = '';
 }
@@ -161,12 +161,13 @@ function closeModal() {
 
 /////////////////////////////////////////////////////////////////////////////////issue
 function setIssue(data) {
+    document.getElementById("issueId").value = data.id;
     document.getElementById("title").value = data.title;
     document.getElementById("tag").value = data.tagName;
     document.getElementById("status").value = data.status;
     document.getElementById("contents").value = data.contents;
-    document.getElementById("createdAt").innerText = timeToString(data.createdAt);
-    document.getElementById("updatedAt").innerText = timeToString(data.updatedAt);
+//    document.getElementById("createdAt").innerText = timeToString(data.createdAt);
+//    document.getElementById("updatedAt").innerText = timeToString(data.updatedAt);
     document.getElementById("dueType").value = data.dueType;
     document.getElementById("dueDate").value = timeToString(data.dueDate);
 }
@@ -210,16 +211,17 @@ function saveIssue() {
 }
 
 function deleteIssue() {
-  const issueFields = document.getElementsByClassName('field-value');
-  const editButton = document.querySelector('.edit-button');
-  const saveButton = document.querySelector('.save-button');
-
-  // Disable editing for input fields and textarea
-  Array.from(issueFields).forEach((field) => {
-    field.disabled = true;
-  });
-
-  // Toggle visibility of buttons
-  editButton.style.display = 'block';
-  saveButton.style.display = 'none';
+        const id = document.getElementById("issueId").value;
+        const url = 'http://localhost:8080/issue/delete/' + id;
+        fetch(url, {
+          method: 'DELETE',
+        })
+        .then(response => response.text())
+        .then(result => {
+            alert(result);
+            closeModal();
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
 }
