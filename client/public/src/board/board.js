@@ -2,7 +2,6 @@ userId = "성";
 callBoard(userId);
 
 function callBoard(userId) {
-    // POST 요청 보내기
     const url = 'http://localhost:8080/issue/read/' + userId;
 
     fetch(url, {
@@ -39,13 +38,6 @@ function updateBoard(data) {
             setBoard(data, "BACKLOG", i);
         }
     }
-
-    // 드래그 기능을 위해 새로 세팅
-    let = issues = document.querySelectorAll('.issue');
-    issues.forEach(issue => {
-        issue.addEventListener('dragstart', dragStart);
-        issue.addEventListener('dragend', dragEnd);
-    });
 }
 
 function setBoard(data, status, i) {
@@ -56,6 +48,11 @@ function setBoard(data, status, i) {
     newIssue.textContent = data[i].title;
     newIssue.addEventListener('click', function() {
         openModal(data[i]);
+    });
+    // 드래그 세팅
+    newIssue.addEventListener('dragstart', dragStart);
+    newIssue.addEventListener('dragend', function() {
+        dragEnd.call(this, data[i]);
     });
     parentElement.appendChild(newIssue);
 }
@@ -69,9 +66,29 @@ function dragStart() {
     this.classList.add('dragging');
 }
 
-function dragEnd() {
-    this.classList.remove('dragging');
-    draggingIssue = null;
+function dragEnd(data) {
+    data.status = this.parentElement.id;
+//    data.status =
+    // POST 요청 보내기
+        const url = 'http://localhost:8080/issue/update';
+
+        fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        })
+        .then(response => response.text())
+        .then(result => {
+          // 요청에 대한 처리
+//          alert(result);
+            this.classList.remove('dragging');
+        })
+        .catch(error => {
+          // 오류 처리
+          console.error('Error:', error);
+        });
 }
 
 const columns = document.querySelectorAll('.column');
