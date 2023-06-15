@@ -26,6 +26,7 @@
     }
 
     .issue {
+      min-height: 20px;
       margin-bottom: 5px;
       padding: 5px;
       background-color: #ffffff;
@@ -144,18 +145,27 @@
             cursor: pointer;
         }
 
+        .tags {
+          min
+          background-color: #ffffff;
+          color: #007bff;
+          cursor: pointer;
+          margin-bottom: 5px;
+          padding: 5px;
+          border: 1px solid #cccccc;
+          width: 100%;
+        }
+
   </style>
 </head>
 <body>
 <h3>Tag</h3>
 <select class="tags" onchange="selectedTag()">
-    <option>전체</option>
+<option>전체</option>
 </select>
-
+<button class="add-button" onclick="openModal()">+</button> <!-- 추가 버튼 -->
 <div class="board">
-    <button class="add-button" onclick="openModal()">+</button> <!-- 추가 버튼 -->
     <div class="upper-column">
-
         <div class="column" id="TODO">
             <h2>To Do</h2>
 <!--            <button class="add-button" onclick="openModal()">+</button> &lt;!&ndash; 추가 버튼 &ndash;&gt;-->
