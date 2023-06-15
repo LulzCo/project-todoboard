@@ -1,7 +1,6 @@
 userId = "원";
 callBoard(userId);
 callTag(userId);
-
 function callBoard(userId) {
     const url = 'http://localhost:8080/issue/read/' + userId;
 
@@ -54,16 +53,19 @@ function callTag(userId) {
 
 function setTags(data) {
     let selectElement = document.querySelector('.tags');
+    let selectElement2 = document.querySelector('#tag');
     for (let i = 0; i < data.length; i++) {
         let newTag = document.createElement('option');
         newTag.value = data[i].id;
         newTag.textContent = data[i].tagName;
         selectElement.appendChild(newTag);
+        let copiedTag = newTag.cloneNode(true);
+        selectElement2.appendChild(copiedTag);
     }
 }
 
-function selectedTag(event) {
-    let tagId = event.target.value;
+function selectedTag() {
+    let tagId = document.querySelector('.tags').value;
     if (tagId == "전체") {
         callBoard(userId);
     } else {
@@ -90,7 +92,6 @@ function selectedTag(event) {
         console.error('Error:', error);
         });
     }
-
 }
 
 
@@ -238,7 +239,7 @@ function closeModal() {
     document.getElementById("dueType").value = '';
     document.getElementById("dueDate").value = '';
 
-    callBoard(userId);
+    selectedTag();
 }
 
 
