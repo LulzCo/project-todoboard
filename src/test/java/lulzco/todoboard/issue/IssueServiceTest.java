@@ -15,6 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -107,8 +108,8 @@ class IssueServiceTest {
 
     private Issue createIssue() {
 
-        String tempUserId = "test userId";
-        String tempTagName = "test tag";
+        String tempUserId = "원";
+        String tempTagName = String.valueOf(UUID.randomUUID());;
 
         Tag tempTag = new Tag();
         tempTag.setUserId(tempUserId);
@@ -117,11 +118,11 @@ class IssueServiceTest {
         tagService.create(tempTag);
 
         ////////////////////////////////////////////
-        String userId = "성";
-        String title = "test title";
+        String userId = "원";
+        String title = String.valueOf(UUID.randomUUID());;
         Long tagId = tempTag.getId();
         IssueStatus status = IssueStatus.BACKLOG;
-        String contents = "test contents";
+        String contents = String.valueOf(UUID.randomUUID());
         DueType dueType = DueType.DEADLINE;
         LocalDateTime dueDate = LocalDateTime.of(2024, 12, 25, 23, 59);
 

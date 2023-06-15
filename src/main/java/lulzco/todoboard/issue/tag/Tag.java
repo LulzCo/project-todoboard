@@ -16,7 +16,7 @@ public class Tag {
     @NonNull
     private String userId;
 
-    @Column
+    @Column(unique = true)
     @NonNull
     private String tagName;
 

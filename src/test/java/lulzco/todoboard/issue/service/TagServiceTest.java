@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -43,7 +44,7 @@ class TagServiceTest {
     void update() {
         Tag tag = createTag();
 
-        String tagName = "test Tag Name 2222";
+        String tagName = String.valueOf(UUID.randomUUID());
         tagService.updateTagName(tag.getId(), tagName);
 
         Tag updatedTag = tagService.getTagById(tag.getId());
@@ -76,8 +77,8 @@ class TagServiceTest {
     }
 
     private Tag createTag() {
-        String userId = "성";
-        String tagName = "test tag";
+        String userId = "원";
+        String tagName = String.valueOf(UUID.randomUUID());
 
         Tag tag = new Tag();
         tag.setUserId(userId);
