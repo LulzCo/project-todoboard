@@ -19,10 +19,6 @@ public class CreateIssueDto {
 
     private String contents;
 
-    private LocalDateTime createdAt;
-
-    private LocalDateTime updatedAt;
-
     private DueType dueType;
 
     private LocalDateTime dueDate;

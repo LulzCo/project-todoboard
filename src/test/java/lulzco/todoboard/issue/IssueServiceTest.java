@@ -122,8 +122,6 @@ class IssueServiceTest {
         Long tagId = tempTag.getId();
         IssueStatus status = IssueStatus.BACKLOG;
         String contents = "test contents";
-        LocalDateTime createdAt = LocalDateTime.now();
-        LocalDateTime updatedAt = LocalDateTime.now();
         DueType dueType = DueType.DEADLINE;
         LocalDateTime dueDate = LocalDateTime.of(2024, 12, 25, 23, 59);
 
@@ -133,8 +131,6 @@ class IssueServiceTest {
         createIssueDto.setTagId(tagId);
         createIssueDto.setStatus(status);
         createIssueDto.setContents(contents);
-        createIssueDto.setCreatedAt(createdAt);
-        createIssueDto.setUpdatedAt(updatedAt);
         createIssueDto.setDueType(dueType);
         createIssueDto.setDueDate(dueDate);
 

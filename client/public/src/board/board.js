@@ -2,6 +2,7 @@ userId = "성";
 callBoard(userId);
 
 function callBoard(userId) {
+//    deleteBoard();
     const url = 'http://localhost:8080/issue/read/' + userId;
 
     fetch(url, {
@@ -25,6 +26,21 @@ function callBoard(userId) {
       console.error('Error:', error);
     });
 }
+
+//function deleteBoard() {
+//    console.log("deleteBoard()")
+//    let temp = ["TODO", "DOING", "DONE", "BACKLOG"];
+//    for (let i = 0; i < temp.length; i++) {
+//        let parentElement = document.getElementById(temp[i]);
+//        let childNodes = parentElement.childNodes;
+//        for (let j = 0; j < childNodes.length + 10; j++) {
+//            let childNode = childNodes[j];
+//            if (childNode.className == 'issue') {
+//                childNode.remove();
+//            }
+//        }
+//    }
+//}
 
 function updateBoard(data) {
     for (let i = 0; i < data.length; i++) {
@@ -89,6 +105,7 @@ function dragEnd(data) {
           // 오류 처리
           console.error('Error:', error);
         });
+//    deleteBoard();
 }
 
 const columns = document.querySelectorAll('.column');
@@ -162,6 +179,8 @@ function closeModal() {
 //    document.getElementById("updatedAt").innerText = '';
     document.getElementById("dueType").value = '';
     document.getElementById("dueDate").value = '';
+
+//    deleteBoard();
 }
 
 
@@ -180,7 +199,8 @@ function setIssue(data) {
 }
 
 function timeToString(time) {
-    return time.substring(0, 4) + "년" + time.substring(5, 7) + "월" + time.substring(8, 10) + "일 - " + time.substring(11, 13) + "시" + time.substring(14, 16) + "분";
+    return time;
+//    return time.substring(0, 4) + "년" + time.substring(5, 7) + "월" + time.substring(8, 10) + "일 - " + time.substring(11, 13) + "시" + time.substring(14, 16) + "분";
 }
 
 function editIssue() {
@@ -237,6 +257,33 @@ function saveIssue() {
     saveButton.style.display = 'none';
     updateButton.style.display = 'none';
 
+    // POST 요청 보내기
+    const url = 'http://localhost:8080/issue/create';
+
+    data = {
+        userId: userId,
+        title: document.getElementById("title").value,
+        tagId: 1,
+        status: "TODO",
+        contents: document.getElementById("contents").value,
+        dueType: "DEADLINE",
+        dueDate: null,
+    }
+
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(response => response.text())
+    .then(result => {
+//        alert(result);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
 }
 
 function deleteIssue() {

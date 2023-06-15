@@ -7,6 +7,7 @@ import lulzco.todoboard.issue.tag.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,8 +32,8 @@ public class IssueServiceImpl implements IssueService {
         issue.setTagName(tagService.getTagById(createIssueDto.getTagId()).getTagName());
         issue.setStatus(createIssueDto.getStatus());
         issue.setContents(createIssueDto.getContents());
-        issue.setCreatedAt(createIssueDto.getCreatedAt());
-        issue.setUpdatedAt(createIssueDto.getUpdatedAt());
+        issue.setCreatedAt(LocalDateTime.now());
+        issue.setUpdatedAt(LocalDateTime.now());
         issue.setDueType(createIssueDto.getDueType());
         issue.setDueDate(createIssueDto.getDueDate());
 
