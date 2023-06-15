@@ -1,4 +1,4 @@
-userId = "성";
+userId = "원";
 callBoard(userId);
 callTag(userId);
 
@@ -64,28 +64,32 @@ function setTags(data) {
 
 function selectedTag(event) {
     let tagId = event.target.value;
-    const url = 'http://localhost:8080/issue/read/' + userId + '/' + tagId
+    if (tagId == "전체") {
+        callBoard(userId);
+    } else {
+        const url = 'http://localhost:8080/issue/read/' + userId + '/' + tagId
 
-    fetch(url, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-    })
-    .then(response => {
-        if (response.ok) {
-            return response.json();
-        } else {
-            throw new Error('오류 발생');
-        }
-    })
-    .then(data => {
-        updateBoard(data);
-    })
-    .catch(error => {
-      // 오류 처리
-      console.error('Error:', error);
-    });
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('오류 발생');
+            }
+        })
+        .then(data => {
+            updateBoard(data);
+        })
+        .catch(error => {
+        // 오류 처리
+        console.error('Error:', error);
+        });
+    }
 
 }
 
