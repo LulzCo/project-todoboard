@@ -224,21 +224,23 @@ function openModal(issue) {
         deleteButton.style.display = 'none';
         updateButton.style.display = 'none';
 
-        let selectedOption = tagId;
-        // select 요소 가져오기
-        let selectElement = document.getElementById('tag');
-        // select 요소의 옵션들을 순회하며 선택 상태 설정
-        for (let i = 0; i < selectElement.options.length; i++) {
-          let option = selectElement.options[i];
-          if (option.value == selectedOption) {
-            option.selected = true;
-            break;  // 선택되었으므로 더 이상 순회할 필요 없음
-          }
-        }
 
         Array.from(issueFields).forEach((field) => {
             field.disabled = false;
         });
+    }
+
+    ///// tagId 연동 부분////////
+    let selectedOption = tagId;
+    // select 요소 가져오기
+    let selectElement = document.getElementById('tag');
+    // select 요소의 옵션들을 순회하며 선택 상태 설정
+    for (let i = 0; i < selectElement.options.length; i++) {
+      let option = selectElement.options[i];
+      if (option.value == selectedOption) {
+        option.selected = true;
+        break;  // 선택되었으므로 더 이상 순회할 필요 없음
+      }
     }
 }
 
@@ -263,19 +265,19 @@ function setIssue(data) {
     document.getElementById("issueId").value = data.id;
     document.getElementById("title").value = data.title;
 
-//    document.getElementById('tag').selected = 'tag' + data.tag.id;
-    // 선택할 옵션 값
-    var selectedOption = data.tag.id;
-    // select 요소 가져오기
-    var selectElement = document.getElementById('tag');
-    // select 요소의 옵션들을 순회하며 선택 상태 설정
-    for (let i = 0; i < selectElement.options.length; i++) {
-      let option = selectElement.options[i];
-      if (option.value == selectedOption) {
-        option.selected = true;
-        break;  // 선택되었으므로 더 이상 순회할 필요 없음
-      }
-    }
+////    document.getElementById('tag').selected = 'tag' + data.tag.id;
+//    // 선택할 옵션 값
+//    var selectedOption = data.tag.id;
+//    // select 요소 가져오기
+//    var selectElement = document.getElementById('tag');
+//    // select 요소의 옵션들을 순회하며 선택 상태 설정
+//    for (let i = 0; i < selectElement.options.length; i++) {
+//      let option = selectElement.options[i];
+//      if (option.value == selectedOption) {
+//        option.selected = true;
+//        break;  // 선택되었으므로 더 이상 순회할 필요 없음
+//      }
+//    }
 
     document.getElementById("status").value = data.status;
     document.getElementById("contents").value = data.contents;

@@ -153,23 +153,25 @@
 </select>
 
 <div class="board">
+    <button class="add-button" onclick="openModal()">+</button> <!-- 추가 버튼 -->
     <div class="upper-column">
+
         <div class="column" id="TODO">
             <h2>To Do</h2>
-            <button class="add-button" onclick="openModal()">+</button> <!-- 추가 버튼 -->
+<!--            <button class="add-button" onclick="openModal()">+</button> &lt;!&ndash; 추가 버튼 &ndash;&gt;-->
         </div>
         <div class="column" id="DOING">
-            <h2>In Progress</h2>
-            <button class="add-button" onclick="openModal()">+</button> <!-- 추가 버튼 -->
+            <h2>DOING</h2>
+<!--            <button class="add-button" onclick="openModal()">+</button> &lt;!&ndash; 추가 버튼 &ndash;&gt;-->
         </div>
         <div class="column" id="DONE">
             <h2>Done</h2>
-            <button class="add-button" onclick="openModal()">+</button> <!-- 추가 버튼 -->
+<!--            <button class="add-button" onclick="openModal()">+</button> &lt;!&ndash; 추가 버튼 &ndash;&gt;-->
         </div>
     </div>
     <div class="column" id="BACKLOG">
         <h2>BackLog</h2>
-        <button class="add-button" onclick="openModal()">+</button> <!-- 추가 버튼 -->
+<!--        <button class="add-button" onclick="openModal()">+</button> &lt;!&ndash; 추가 버튼 &ndash;&gt;-->
     </div>
 </div>
 <!-- 모달 -->
@@ -191,7 +193,13 @@
                     </div>
                     <div class="issue-field">
                         <span class="field-label">Status:</span>
-                        <input id="status" type="text" class="field-value" value="" />
+<!--                        <input id="status" type="text" class="field-value" value="" />-->
+                        <select id="status" type="text" class="field-value" value="">
+                            <option value="BACKLOG">BACKLOG</option>
+                            <option value="TODO">TODO</option>
+                            <option value="DOING">DOING</option>
+                            <option value="DONE">DONE</option>
+                        </select>
                     </div>
                     <div class="issue-field">
                         <span class="field-label">Contents:</span>
