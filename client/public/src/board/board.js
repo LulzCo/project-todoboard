@@ -3,7 +3,6 @@ callBoard(userId);
 callTag(userId);
 
 function callBoard(userId) {
-    clear();
     const url = 'http://localhost:8080/issue/read/' + userId;
 
     fetch(url, {
@@ -51,7 +50,6 @@ function callTag(userId) {
       // 오류 처리
       console.error('Error:', error);
     });
-
 }
 
 function setTags(data) {
@@ -64,6 +62,32 @@ function setTags(data) {
     }
 }
 
+function selectedTag(event) {
+    let tagId = event.target.value;
+    const url = 'http://localhost:8080/issue/read/' + userId + '/' + tagId
+
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error('오류 발생');
+        }
+    })
+    .then(data => {
+        updateBoard(data);
+    })
+    .catch(error => {
+      // 오류 처리
+      console.error('Error:', error);
+    });
+
+}
 
 
 function clear() {
@@ -75,6 +99,7 @@ function clear() {
 }
 
 function updateBoard(data) {
+    clear();
     for (let i = 0; i < data.length; i++) {
         if (data[i].status == "TODO") {
             setBoard(data, "TODO", i);
