@@ -40,7 +40,8 @@
         margin-bottom: 5px;
         padding: 5px;
         border: 1px solid #cccccc;
-        width: 100%;
+        width: 50%;
+        position: relative; /* 추가: 상대적인 위치 지정 */
     }
 
     .dragging {
@@ -161,15 +162,17 @@
 </head>
 <body>
 <h3>Tag</h3>
-<div class="upper-column">
-    <label>
-        <select class="tags" onchange="selectedTag()">
-            <option>전체</option>
-        </select>
-    </label>
-    <button class="add-button" onclick="openTagModal()">태그 관리</button>
+<div class="column">
+    <div class="upper-column">
+        <label>
+            <select class="tags" onchange="selectedTag()">
+                <option>전체</option>
+            </select>
+            <button class="add-button" onclick="openTagModal()">태그 관리</button>
+        </label>
+    </div>
 </div>
-<button class="add-button" onclick="openModal()">+</button> <!-- 추가 버튼 -->
+<button class="add-button" onclick="openModal()">이슈 생성</button> <!-- 추가 버튼 -->
 <div class="board">
     <div class="upper-column">
         <div class="column" id="TODO">
