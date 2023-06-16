@@ -15,6 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -108,7 +109,7 @@ class IssueServiceTest {
 
     private Issue createIssue() {
 
-        String tempUserId = "원";
+        String tempUserId = "ysw991106";
         String tempTagName = String.valueOf(UUID.randomUUID());;
 
         Tag tempTag = new Tag();
@@ -117,10 +118,13 @@ class IssueServiceTest {
 
         tagService.create(tempTag);
 
+        List<Tag> tags = tagService.getTagByUserId(tempUserId);
+        Random random = new Random();
+        int num = random.nextInt(tags.size());
         ////////////////////////////////////////////
-        String userId = "원";
+        String userId = "ysw991106";
         String title = String.valueOf(UUID.randomUUID());;
-        Long tagId = tempTag.getId();
+        Long tagId = tags.get(num).getId();
         IssueStatus status = IssueStatus.BACKLOG;
         String contents = String.valueOf(UUID.randomUUID());
         DueType dueType = DueType.DEADLINE;
