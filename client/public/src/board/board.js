@@ -251,7 +251,7 @@ function closeModal() {
     modalOverlay.classList.remove('active');
     document.getElementById("title").value = '';
     document.getElementById("tag").value = '';
-    document.getElementById("status").value = '';
+    document.getElementById("status").value = 'BACKLOG';
     document.getElementById("contents").value = '';
 //    document.getElementById("dueType").value = '';
 //    document.getElementById("dueDate").value = '';
@@ -422,6 +422,7 @@ function selectedTagModal() {
 }
 
 function closeTagModal() {
+    document.getElementById('tagId').value = null;
     tagModalOverlay.classList.remove('active');
 }
 
@@ -490,7 +491,6 @@ function deleteTag() {
             closeTagModal();
             callBoard(userId);
             callTag(userId);
-
         })
         .catch(error => {
         console.error('Error:', error);
