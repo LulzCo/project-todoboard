@@ -13,7 +13,16 @@
       padding: 10px;
       background-color: #f0f0f0;
       position: relative; /* 추가: 상대적인 위치 지정 */
+      max-height: 500px
     }
+
+    .scroll-container {
+     /* 스크롤이 가능한 영역을 지정 */
+        background-color: #f0f0f0;
+        width: 100%;
+        height: 100%;
+        overflow-y: scroll; /* 세로 스크롤을 허용 */
+     }
 
     .backlog {
       flex: 0.655;
@@ -39,9 +48,10 @@
         margin-bottom: 5px;
         padding: 5px;
         border: 1px solid #cccccc;
-        width: 100%;
-        position: relative; /* 추가: 상대적인 위치 지정 */
-
+        width: 98%;
+        position: relative;
+        left: 50%; /* 왼쪽 기준으로 가운데로 이동 */
+        transform: translateX(-50%); /* 이동한 위치에서 좌측으로 50%만큼 이동 */
     }
 
     .add-button {
@@ -168,6 +178,16 @@
           width: 100%;
         }
 
+    .fixed-heading {
+      position: sticky;
+      top: 0;
+        background-color: #007bff;
+        padding: 10px;
+        color: #ffffff;
+        margin-bottom: 10px;
+        z-index: 1;
+    }
+
   </style>
     <title>Board</title>
 </head>
@@ -184,18 +204,24 @@
 <button class="issue-button" onclick="openModal()">이슈 생성</button> <!-- 추가 버튼 -->
 <div class="board">
     <div class="upper-column">
-        <div class="column" id="TODO">
-            <h2>To Do</h2>
+        <div class="scroll-container">
+            <div class="column" id="TODO">
+                <h2 class="fixed-heading">To Do</h2>
+            </div>
         </div>
-        <div class="column" id="DOING">
-            <h2>DOING</h2>
+        <div class="scroll-container">
+            <div class="column" id="DOING">
+                <h2 class="fixed-heading">DOING</h2>
+            </div>
         </div>
-        <div class="column" id="DONE">
-            <h2>Done</h2>
+        <div class="scroll-container">
+            <div class="column" id="DONE">
+                <h2 class="fixed-heading">Done</h2>
+            </div>
         </div>
     </div>
     <div class="column" id="BACKLOG">
-        <h2>BackLog</h2>
+        <h2 class="fixed-heading">BackLog</h2>
     </div>
 </div>
 <!-- 모달 -->
