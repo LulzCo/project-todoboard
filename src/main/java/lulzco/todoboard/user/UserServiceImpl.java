@@ -37,4 +37,9 @@ public class UserServiceImpl implements UserService {
     public boolean isIdDuplicated(String userId) {
         return userRepository.existsByUserId(userId);
     }
+
+    @Override
+    public User getUserByUserId(String userId) {
+        return userRepository.findByUserId(userId);
+    }
 }

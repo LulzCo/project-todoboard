@@ -1,4 +1,4 @@
-const userId = "원";
+const userId = localStorage.getItem("userId")
 let tagId = null;
 callBoard(userId);
 callTag(userId);
@@ -235,11 +235,8 @@ function openModal(issue) {
 
     ///// tagId 연동 부분////////
     let selectedOption = tagId;
-    console.log(tagId)
-    console.log(selectedOption)
     // select 요소 가져오기
     let selectElement = document.querySelector('#tag');
-    console.log(selectElement)
     // select 요소의 옵션들을 순회하며 선택 상태 설정
     for (let i = 0; i < selectElement.options.length; i++) {
       let option = selectElement.options[i];
@@ -256,8 +253,8 @@ function closeModal() {
     document.getElementById("tag").value = '';
     document.getElementById("status").value = '';
     document.getElementById("contents").value = '';
-    document.getElementById("dueType").value = '';
-    document.getElementById("dueDate").value = '';
+//    document.getElementById("dueType").value = '';
+//    document.getElementById("dueDate").value = '';
 
     selectedTag();
 }
@@ -270,8 +267,8 @@ function setIssue(data) {
     document.getElementById("title").value = data.title;
     document.getElementById("status").value = data.status;
     document.getElementById("contents").value = data.contents;
-    document.getElementById("dueType").value = data.dueType;
-    document.getElementById("dueDate").value = timeToString(data.dueDate);
+//    document.getElementById("dueType").value = data.dueType;
+//    document.getElementById("dueDate").value = timeToString(data.dueDate);
 }
 
 function timeToString(time) {
@@ -340,7 +337,7 @@ function saveIssue() {
         userId: userId,
         title: document.getElementById("title").value,
         tagId: document.getElementById("tag").value,
-        status: "TODO",
+        status: document.getElementById("status").value,
         contents: document.getElementById("contents").value,
         dueType: "DEADLINE",
         dueDate: null,
@@ -444,7 +441,6 @@ function saveTag() {
         })
         .then(response => response.text())
         .then(result => {
-            console.log(result);
             closeTagModal();
             callBoard(userId);
             callTag(userId);
@@ -470,7 +466,6 @@ function saveTag() {
         })
         .then(response => response.text())
         .then(result => {
-            console.log(result);
             closeTagModal();
             callBoard(userId);
             callTag(userId);
@@ -492,7 +487,6 @@ function deleteTag() {
         })
         .then(response => response.text())
         .then(result => {
-            console.log(result);
             closeTagModal();
             callBoard(userId);
             callTag(userId);

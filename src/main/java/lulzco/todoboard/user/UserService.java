@@ -6,4 +6,6 @@ public interface UserService {
     User getUserById(Long id);
 
     boolean isIdDuplicated(String userId);
+
+    User getUserByUserId(String userId);
 }
