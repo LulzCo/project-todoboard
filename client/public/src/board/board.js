@@ -296,6 +296,7 @@ function editIssue() {
 }
 
 function updateIssue() {
+    console.log(11);
     const issueFields = document.getElementsByClassName('field-value');
     const editButton = document.querySelector('.edit-button');
     const saveButton = document.querySelector('.save-button');
