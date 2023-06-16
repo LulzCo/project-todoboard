@@ -3,6 +3,9 @@ package lulzco.todoboard.auth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +24,10 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody LoginDto loginDto) {
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        if (authentication instanceof AnonymousAuthenticationToken)
+//            return "loginPage";
+//        return "redirect:/";
         if (authService.login(loginDto)) {
             return ResponseEntity.status(HttpStatus.OK).body("로그인 완료");
         } else {
